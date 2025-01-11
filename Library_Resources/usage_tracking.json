@@ -1,4 +1,27 @@
 {
-  "01_Welcome_Message": 1,
-  "02_Purpose_of_Library": 1
+  "last_updated": "2025-01-11T05:14:10-08:00",
+  "blocks": {
+    "01_Welcome_Message": {
+      "visits": 1,
+      "last_visit": "2025-01-11T05:14:10-08:00",
+      "resources_accessed": []
+    },
+    "02_Purpose_of_Library": {
+      "visits": 1,
+      "last_visit": "2025-01-11T05:14:10-08:00",
+      "resources_accessed": []
+    }
+  },
+  "summary": {
+    "total_visits": 2,
+    "most_visited": "01_Welcome_Message",
+    "least_visited": "02_Purpose_of_Library",
+    "average_time_spent": "00:00:00"
+  },
+  "tracking_enabled": true,
+  "tracking_options": {
+    "visits": true,
+    "resources": true,
+    "time_spent": true
+  }
 }

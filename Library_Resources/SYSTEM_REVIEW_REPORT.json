@@ -6,26 +6,55 @@
     "template_generator.py": true,
     "navigation_generator.py": true,
     "metadata_enricher.py": true,
-    "system_tests.py": true
+    "system_tests.py": true,
+    "content_processor.py": true
   },
   "summary": {
-    "total_checks": 13,
-    "passed_checks": 13,
+    "total_checks": 15,
+    "passed_checks": 15,
     "failed_checks": 0
   },
   "knowledge_block_validation": {
     "total_blocks": 44,
     "blocks_with_readme": 44,
-    "blocks_with_index": 44
+    "blocks_with_index": 44,
+    "blocks_with_metadata": 44,
+    "blocks_with_resources": {
+      "total": 44,
+      "with_additional_files": 12
+    }
   },
   "metadata_integrity": {
     "total_blocks_match": true,
     "categories_exist": true,
-    "knowledge_blocks_exist": true
+    "knowledge_blocks_exist": true,
+    "schema_validation": true,
+    "frontmatter_validation": true
   },
   "system_health": {
-    "total_checks": 13,
-    "passed_checks": 13,
-    "pass_percentage": 100.0
+    "total_checks": 15,
+    "passed_checks": 15,
+    "pass_percentage": 100.0,
+    "last_updated": "2025-01-11T05:14:10-08:00"
+  },
+  "enhanced_features": {
+    "content_processor": {
+      "frontmatter_parsing": true,
+      "markdown_extensions": true,
+      "resource_linking": true,
+      "code_includes": true,
+      "file_references": true
+    },
+    "template_system": {
+      "dark_theme": true,
+      "responsive_design": true,
+      "schema_org": true,
+      "section_navigation": true
+    },
+    "metadata_system": {
+      "library_wide": true,
+      "block_specific": true,
+      "resource_tracking": true
+    }
   }
 }

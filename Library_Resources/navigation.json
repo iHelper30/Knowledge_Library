@@ -107,8 +107,12 @@
     "previous": "26_Monthly_Updates",
     "next": "29_Real_Life_Examples"
   },
-  "29_Real_Life_Examples": {
+  "28": {
     "previous": "27_Newsletter_Drafts",
+    "next": "29_Real_Life_Examples"
+  },
+  "29_Real_Life_Examples": {
+    "previous": "28",
     "next": "30_Success_Metrics"
   },
   "30_Success_Metrics": {
