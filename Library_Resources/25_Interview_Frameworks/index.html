@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ meta_description }}">
+    <meta name="keywords" content="{{ keywords }}">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="{{ title }} | Comprehensive Resource Library">
+    <meta property="og:description" content="{{ meta_description }}">
+    <meta property="og:type" content="article">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="../templates/styles/theme.css" as="style">
+    
+    <title>{{ title }} | Comprehensive Resource Library</title>
+    <link rel="stylesheet" href="../templates/styles/theme.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{{ title }}",
+        "description": "{{ meta_description }}",
+        "author": {
+            "@type": "Organization",
+            "name": "Comprehensive Resource Library"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header role="banner" class="fade-in">
+        <div class="container">
+            <h1>{{ title }}</h1>
+            <p class="text-muted">{{ subtitle }}</p>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation" class="fade-in">
+        <div class="container nav-links">
+            <a href="../01_Welcome_Message" class="button">Welcome</a>
+            <a href="../02_Purpose_of_Library" class="button">Purpose</a>
+            <a href="../03_Navigation_Guide" class="button">Navigation</a>
+            <a href="../04_Quick_Start_Guides" class="button">Quick Start</a>
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+        <article class="card fade-in">
+            {{ content }}
+        </article>
+        
+        <aside role="complementary" class="card bg-light fade-in">
+            <h3>Key Takeaways</h3>
+            {{ key_takeaways }}
+        </aside>
+        
+        <nav class="navigation-links" aria-label="Section navigation">
+            
+            <a href="../24_AMA_Guidelines" class="button">← Previous</a>
+            
+            
+            <a href="../26_Monthly_Updates" class="button">Next →</a>
+            
+        </nav>
+    </main>
+
+    <footer role="contentinfo" class="fade-in">
+        <div class="container">
+            <p class="text-muted">Comprehensive Resource Library - Your Guide to Success</p>
+            <nav aria-label="Footer navigation">
+                <a href="../">Home</a> | 
+                <a href="../sitemap.html">Sitemap</a> | 
+                <a href="../contact.html">Contact</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Deferred loading of non-critical scripts -->
+    <script src="../templates/scripts/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+{
+  "01_Welcome_Message": {
+    "previous": null,
+    "next": "02_Purpose_of_Library"
+  },
+  "02_Purpose_of_Library": {
+    "previous": "01_Welcome_Message",
+    "next": "03_Navigation_Guide"
+  },
+  "03_Navigation_Guide": {
+    "previous": "02_Purpose_of_Library",
+    "next": "04_Quick_Start_Guides"
+  },
+  "04_Quick_Start_Guides": {
+    "previous": "03_Navigation_Guide",
+    "next": "05_Basic_Tutorials"
+  },
+  "05_Basic_Tutorials": {
+    "previous": "04_Quick_Start_Guides",
+    "next": "06_Email_Marketing"
+  },
+  "06_Email_Marketing": {
+    "previous": "05_Basic_Tutorials",
+    "next": "07_Social_Media"
+  },
+  "07_Social_Media": {
+    "previous": "06_Email_Marketing",
+    "next": "08_SEO_Checklists"
+  },
+  "08_SEO_Checklists": {
+    "previous": "07_Social_Media",
+    "next": "09_Workflow_Automation"
+  },
+  "09_Workflow_Automation": {
+    "previous": "08_SEO_Checklists",
+    "next": "10_Blog_Templates"
+  },
+  "10_Blog_Templates": {
+    "previous": "09_Workflow_Automation",
+    "next": "11_Video_Scripts"
+  },
+  "11_Video_Scripts": {
+    "previous": "10_Blog_Templates",
+    "next": "12_Graphic_Design"
+  },
+  "12_Graphic_Design": {
+    "previous": "11_Video_Scripts",
+    "next": "13_Online_Courses"
+  },
+  "13_Online_Courses": {
+    "previous": "12_Graphic_Design",
+    "next": "14_Ebook_Summaries"
+  },
+  "14_Ebook_Summaries": {
+    "previous": "13_Online_Courses",
+    "next": "15_Guide_Summaries"
+  },
+  "15_Guide_Summaries": {
+    "previous": "14_Ebook_Summaries",
+    "next": "16_Whitepaper_Summaries"
+  },
+  "16_Whitepaper_Summaries": {
+    "previous": "15_Guide_Summaries",
+    "next": "17_AI_Tutorials"
+  },
+  "17_AI_Tutorials": {
+    "previous": "16_Whitepaper_Summaries",
+    "next": "18_AI_Case_Studies"
+  },
+  "18_AI_Case_Studies": {
+    "previous": "17_AI_Tutorials",
+    "next": "19_Digital_Marketing"
+  },
+  "19_Digital_Marketing": {
+    "previous": "18_AI_Case_Studies",
+    "next": "20_Success_Stories"
+  },
+  "20_Success_Stories": {
+    "previous": "19_Digital_Marketing",
+    "next": "21_Business_Plans"
+  },
+  "21_Business_Plans": {
+    "previous": "20_Success_Stories",
+    "next": "22_Networking_Tips"
+  },
+  "22_Networking_Tips": {
+    "previous": "21_Business_Plans",
+    "next": "23_Discussion_Forum"
+  },
+  "23_Discussion_Forum": {
+    "previous": "22_Networking_Tips",
+    "next": "24_AMA_Guidelines"
+  },
+  "24_AMA_Guidelines": {
+    "previous": "23_Discussion_Forum",
+    "next": "25_Interview_Frameworks"
+  },
+  "25_Interview_Frameworks": {
+    "previous": "24_AMA_Guidelines",
+    "next": "26_Monthly_Updates"
+  },
+  "26_Monthly_Updates": {
+    "previous": "25_Interview_Frameworks",
+    "next": "27_Newsletter_Drafts"
+  },
+  "27_Newsletter_Drafts": {
+    "previous": "26_Monthly_Updates",
+    "next": "29_Real_Life_Examples"
+  },
+  "29_Real_Life_Examples": {
+    "previous": "27_Newsletter_Drafts",
+    "next": "30_Success_Metrics"
+  },
+  "30_Success_Metrics": {
+    "previous": "29_Real_Life_Examples",
+    "next": "31_Prompt_Toolkit"
+  },
+  "31_Prompt_Toolkit": {
+    "previous": "30_Success_Metrics",
+    "next": "32_Free_Tools"
+  },
+  "32_Free_Tools": {
+    "previous": "31_Prompt_Toolkit",
+    "next": "33_Offer_Templates"
+  },
+  "33_Offer_Templates": {
+    "previous": "32_Free_Tools",
+    "next": "34_Best_Practices"
+  },
+  "34_Best_Practices": {
+    "previous": "33_Offer_Templates",
+    "next": "35_Remote_Work"
+  },
+  "35_Remote_Work": {
+    "previous": "34_Best_Practices",
+    "next": "36_Personal_Development"
+  },
+  "36_Personal_Development": {
+    "previous": "35_Remote_Work",
+    "next": "37_Project_Management"
+  },
+  "37_Project_Management": {
+    "previous": "36_Personal_Development",
+    "next": "38_Time_Management"
+  },
+  "38_Time_Management": {
+    "previous": "37_Project_Management",
+    "next": "39_Leadership_Skills"
+  },
+  "39_Leadership_Skills": {
+    "previous": "38_Time_Management",
+    "next": "40_Feedback_Forms"
+  },
+  "40_Feedback_Forms": {
+    "previous": "39_Leadership_Skills",
+    "next": "41_Interview_Prep"
+  },
+  "41_Interview_Prep": {
+    "previous": "40_Feedback_Forms",
+    "next": "42_Code_Review"
+  },
+  "42_Code_Review": {
+    "previous": "41_Interview_Prep",
+    "next": "43_System_Design"
+  },
+  "43_System_Design": {
+    "previous": "42_Code_Review",
+    "next": "44_Documentation"
+  },
+  "44_Documentation": {
+    "previous": "43_System_Design",
+    "next": "45_Final_Words"
+  },
+  "45_Final_Words": {
+    "previous": "44_Documentation",
+    "next": null
+  }
+}

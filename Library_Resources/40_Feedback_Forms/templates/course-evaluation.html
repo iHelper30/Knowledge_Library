@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Evaluation Form</title>
+    <link rel="stylesheet" href="../../templates/styles/theme.css">
+    <style>
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .likert-scale {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .likert-scale label {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .likert-scale input[type="radio"]:checked + label {
+            background: var(--color-primary);
+            color: white;
+        }
+        .likert-scale input[type="radio"] {
+            display: none;
+        }
+        .evaluation-form {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form class="evaluation-form" id="courseEvaluationForm">
+            <h1>Course Evaluation</h1>
+            
+            <div class="form-group">
+                <label for="courseName">Course Name</label>
+                <select name="courseName" id="courseName" class="form-control" required>
+                    <option value="">Select a course...</option>
+                    <option value="ai_basics">AI Basics</option>
+                    <option value="email_marketing">Email Marketing</option>
+                    <option value="content_strategy">Content Strategy</option>
+                    <option value="seo_fundamentals">SEO Fundamentals</option>
+                </select>
+            </div>
+
+            <h2>Course Content</h2>
+            
+            <div class="form-group">
+                <label>The course objectives were clearly defined</label>
+                <div class="likert-scale">
+                    <input type="radio" name="objectives" id="obj1" value="1" required>
+                    <label for="obj1">Strongly Disagree</label>
+                    <input type="radio" name="objectives" id="obj2" value="2">
+                    <label for="obj2">Disagree</label>
+                    <input type="radio" name="objectives" id="obj3" value="3">
+                    <label for="obj3">Neutral</label>
+                    <input type="radio" name="objectives" id="obj4" value="4">
+                    <label for="obj4">Agree</label>
+                    <input type="radio" name="objectives" id="obj5" value="5">
+                    <label for="obj5">Strongly Agree</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>The content was organized and easy to follow</label>
+                <div class="likert-scale">
+                    <input type="radio" name="organization" id="org1" value="1" required>
+                    <label for="org1">Strongly Disagree</label>
+                    <input type="radio" name="organization" id="org2" value="2">
+                    <label for="org2">Disagree</label>
+                    <input type="radio" name="organization" id="org3" value="3">
+                    <label for="org3">Neutral</label>
+                    <input type="radio" name="organization" id="org4" value="4">
+                    <label for="org4">Agree</label>
+                    <input type="radio" name="organization" id="org5" value="5">
+                    <label for="org5">Strongly Agree</label>
+                </div>
+            </div>
+
+            <h2>Course Materials</h2>
+
+            <div class="form-group">
+                <label>The materials provided were helpful</label>
+                <div class="likert-scale">
+                    <input type="radio" name="materials" id="mat1" value="1" required>
+                    <label for="mat1">Strongly Disagree</label>
+                    <input type="radio" name="materials" id="mat2" value="2">
+                    <label for="mat2">Disagree</label>
+                    <input type="radio" name="materials" id="mat3" value="3">
+                    <label for="mat3">Neutral</label>
+                    <input type="radio" name="materials" id="mat4" value="4">
+                    <label for="mat4">Agree</label>
+                    <input type="radio" name="materials" id="mat5" value="5">
+                    <label for="mat5">Strongly Agree</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="mostHelpful">What aspects of the course were most helpful?</label>
+                <textarea name="mostHelpful" id="mostHelpful" rows="4" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="improvements">What aspects of the course could be improved?</label>
+                <textarea name="improvements" id="improvements" rows="4" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="futureTopics">What topics would you like to see in future courses?</label>
+                <textarea name="futureTopics" id="futureTopics" rows="4" class="form-control"></textarea>
+            </div>
+
+            <button type="submit" class="button primary">Submit Evaluation</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('courseEvaluationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Add timestamp
+            data.timestamp = new Date().toISOString();
+            
+            try {
+                // Here you would typically send the data to your server
+                console.log('Evaluation submitted:', data);
+                
+                // Show success message
+                alert('Thank you for your evaluation!');
+                e.target.reset();
+            } catch (error) {
+                console.error('Error submitting evaluation:', error);
+                alert('There was an error submitting your evaluation. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

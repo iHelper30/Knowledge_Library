@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" style='/* Color Theme */
+--color-primary: #00f3ff;
+/* Neon Blue */
+--color-background: #0a0a0a;
+/* Deep Black */
+--color-text: #e0e0e0;
+/* Light Gray */
+--color-accent: #005c66;
+/* Dark Cyan */
+/* Color Variants */
+--color-primary-light: #4dffff;
+--color-primary-dark: #00c4cc;
+--color-background-light: #1a1a1a;
+--color-background-dark: #000;
+--color-text-muted: #a0a0a0;
+--color-accent-light: #007a88;
+--color-accent-dark: #004048;
+/* Spacing */
+--spacing-xs: 0.25rem;
+--spacing-sm: 0.5rem;
+--spacing-md: 1rem;
+--spacing-lg: 2rem;
+--spacing-xl: 4rem;
+/* Typography */
+--font-family: "Inter", system-ui, -apple-system, sans-serif;
+--font-size-base: 16px;
+--line-height-base: 1.5;
+/* Border Radius */
+--border-radius-sm: 4px;
+--border-radius-md: 8px;
+--border-radius-lg: 16px;
+/* Transitions */
+--transition-fast: 150ms ease;
+--transition-normal: 300ms ease;
+--transition-slow: 500ms ease;
+/* Shadows */
+--shadow-sm: 0 2px 4px rgba(0, 243, 255, 0.1);
+--shadow-md: 0 4px 8px rgba(0, 243, 255, 0.15);
+--shadow-lg: 0 8px 16px rgba(0, 243, 255, 0.2); font-size: 16px;
+background-color: #0a0a0a;
+color: #e0e0e0'>
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="dark" name="color-scheme"/>
+    <meta content="Introducing our latest product innovation" name="description"/>
+    <title>{{product_name}} - New Product Announcement</title>
+
+    <style type="text/css">
+        /* Include base styles from modern-template.html */
+        
+        /* Product announcement specific styles */
+        .product-hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(45deg, rgba(0,243,255,0.1) 0%, rgba(10,10,10,1) 100%);
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .product-image {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,243,255,0.2);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            padding: 20px;
+            background: rgba(0,243,255,0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(0,243,255,0.1);
+        }
+        
+        .feature-icon {
+            color: #00f3ff;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .price-tag {
+            font-size: 36px;
+            color: #00f3ff;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .testimonial {
+            font-style: italic;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        @media screen and (max-width: 600px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body style='font-family: "Inter", system-ui, -apple-system, sans-serif;
+line-height: 1.5;
+margin: 0;
+padding: 0;
+min-height: 100vh;
+display: flex;
+flex-direction: column'>
+    <header>
+        <nav>
+            <div class="container">
+                <a href="../../../index.html">Home</a> |
+                <a href="../../../sitemap.html">Sitemap</a> |
+                <a href="../../../contact.html">Contact</a> |
+                <a href="../../index.html">Email Marketing</a>
+            </div>
+        </nav>
+    </header>
+    <table border="0" cellpadding="0" cellspacing="0" id="bodyTable" role="presentation" style="width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0" width="100%">
+    <tr>
+    <td align="center" style="padding: 0.5rem;
+    border: 1px solid #005c66" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" class="container" role="presentation" style="width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem; width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0" width="600">
+    <!-- Header -->
+    <tr>
+    <td class="header" style="padding: 0.5rem;
+    border: 1px solid #005c66">
+    <img alt="{{company_name}}" src="{{logo_url}}" style="max-width: 200px; height: auto;"/>
+    </td>
+    </tr>
+    <!-- Main Content -->
+    <tr>
+    <td class="content" style="padding: 0.5rem;
+    border: 1px solid #005c66">
+    <!-- Product Hero -->
+    <div class="product-hero">
+    <h1 style="color: #00f3ff; color: #00f3ff;
+    margin-top: 2rem;
+    margin-bottom: 1rem; font-size: 2.5rem">Introducing {{product_name}}</h1>
+    <p style="font-size: 18px; color: #e0e0e0; margin-bottom: 1rem">{{product_tagline}}</p>
+    <img alt="{{product_name}}" class="product-image" src="{{product_image}}"/>
+    <div class="price-tag">{{product_price}}</div>
+    <a class="button" href="{{product_link}}" style="color: #00f3ff;
+    text-decoration: none;
+    transition: color var(--transition-fast); display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #005c66;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--transition-fast)">{{cta_text}}</a>
+    </div>
+    <!-- Key Features -->
+    <h2 style="color: #00f3ff; text-align: center; color: #00f3ff;
+    margin-top: 2rem;
+    margin-bottom: 1rem; font-size: 2rem">Key Features</h2>
+    <div class="feature-grid">
+                                {{#each features}}
+                                <div class="feature-card">
+    <div class="feature-icon">{{icon}}</div>
+    <h3 style="color: #00f3ff; color: #00f3ff;
+    margin-top: 2rem;
+    margin-bottom: 1rem; font-size: 1.75rem">{{title}}</h3>
+    <p style="color: #e0e0e0; margin-bottom: 1rem">{{description}}</p>
+    </div>
+                                {{/each}}
+                            </div>
+    <!-- Testimonial -->
+    <div class="testimonial">
+    <p style="margin-bottom: 1rem">"{{testimonial_quote}}"</p>
+    <p style="color: #00f3ff; text-align: right; margin-bottom: 1rem">- {{testimonial_author}}</p>
+    </div>
+    <!-- Early Bird Offer -->
+    <div style="text-align: center; margin: 40px 0;">
+    <h2 style="color: #00f3ff; color: #00f3ff;
+    margin-top: 2rem;
+    margin-bottom: 1rem; font-size: 2rem">{{offer_title}}</h2>
+    <p style="font-size: 18px; color: #e0e0e0; margin-bottom: 1rem">{{offer_description}}</p>
+    <a class="button" href="{{offer_link}}" style="color: #00f3ff;
+    text-decoration: none;
+    transition: color var(--transition-fast); display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #005c66;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--transition-fast)">{{offer_cta}}</a>
+    </div>
+    </td>
+    </tr>
+    <!-- Footer -->
+    <tr>
+    <td class="footer" style="padding: 0.5rem;
+    border: 1px solid #005c66">
+    <p style="margin-bottom: 1rem">{{company_name}}</p>
+    <p style="margin-bottom: 1rem">{{company_address}}</p>
+    <p style="margin-bottom: 1rem"><a href="{{unsubscribe_link}}" style="color: #666; color: #00f3ff;
+    text-decoration: none;
+    transition: color var(--transition-fast)">Unsubscribe</a> | 
+                               <a href="{{preferences_link}}" style="color: #666; color: #00f3ff;
+    text-decoration: none;
+    transition: color var(--transition-fast)">Update Preferences</a></p>
+    </td>
+    </tr>
+    </table>
+    </td>
+    </tr>
+    </table>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Resource Library. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="../../../templates/scripts/navigation.js"></script>
+</body>
+</html>

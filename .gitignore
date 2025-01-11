@@ -1,0 +1,7 @@
+# Comprehensive Resource Library Gitignore 
+.env 
+*.log 
+__pycache__/ 
+.pytest_cache/ 
+.venv/ 
+.DS_Store 

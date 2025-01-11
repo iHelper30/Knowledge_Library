@@ -1,0 +1,690 @@
+{
+  "total_knowledge_blocks": 44,
+  "categories": {
+    "Introduction and Fundamentals": 10,
+    "Advanced Strategies": 10,
+    "Professional Development": 9,
+    "Tools and Resources": 10,
+    "Advanced Topics": 5
+  },
+  "knowledge_blocks": {
+    "01_Welcome_Message": {
+      "id": "01_Welcome_Message",
+      "title": "Welcome Message",
+      "category": "Introduction and Fundamentals",
+      "summary": "---\n{\n    \"title\": \"Welcome to iHelper.tech\",\n    \"subtitle\": \"Your Gateway to Professional Resources\",\n    \"description\": \"Welcome to the iHelper.tech Resource Library - Your complete guide to professional development resources.\"\n}\n---",
+      "tags": [
+        "welcome",
+        "message"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md",
+        "SEO.md",
+        "welcome.md"
+      ],
+      "difficulty": "Beginner"
+    },
+    "02_Purpose_of_Library": {
+      "id": "02_Purpose_of_Library",
+      "title": "Purpose of Library",
+      "category": "Introduction and Fundamentals",
+      "summary": "---\n{\n    \"title\": \"Purpose of Library\",\n    \"subtitle\": \"Essential Resources for Purpose of Library\",\n    \"description\": \"A comprehensive collection of resources and guides for purpose of library.\"\n}\n---",
+      "tags": [
+        "purpose",
+        "of",
+        "library"
+      ],
+      "content_files": [
+        "index.html",
+        "purpose.md",
+        "README.md",
+        "SEO.md"
+      ],
+      "difficulty": "Beginner"
+    },
+    "03_Navigation_Guide": {
+      "id": "03_Navigation_Guide",
+      "title": "Navigation Guide",
+      "category": "Introduction and Fundamentals",
+      "summary": "---\n{\n    \"title\": \"Navigation Guide\",\n    \"subtitle\": \"Essential Resources for Navigation Guide\",\n    \"description\": \"A comprehensive collection of resources and guides for navigation guide.\"\n}\n---",
+      "tags": [
+        "navigation",
+        "guide"
+      ],
+      "content_files": [
+        "index.html",
+        "navigation.md",
+        "README.md",
+        "SEO.md"
+      ],
+      "difficulty": "Beginner"
+    },
+    "04_Quick_Start_Guides": {
+      "id": "04_Quick_Start_Guides",
+      "title": "Quick Start Guides",
+      "category": "Introduction and Fundamentals",
+      "summary": "---\n{\n    \"title\": \"Quick Start Guides\",\n    \"subtitle\": \"Essential Resources for Quick Start Guides\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "quick",
+        "start",
+        "guides"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Beginner"
+    },
+    "05_Basic_Tutorials": {
+      "id": "05_Basic_Tutorials",
+      "title": "Basic Tutorials",
+      "category": "Introduction and Fundamentals",
+      "summary": "---\n{\n    \"title\": \"Basic Tutorials\",\n    \"subtitle\": \"Essential Resources for Basic Tutorials\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "basic",
+        "tutorials"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Beginner"
+    },
+    "06_Email_Marketing": {
+      "id": "06_Email_Marketing",
+      "title": "Email Marketing",
+      "category": "Introduction and Fundamentals",
+      "summary": "---\n{\n    \"title\": \"Email Marketing\",\n    \"subtitle\": \"Essential Resources for Email Marketing\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "email",
+        "marketing"
+      ],
+      "content_files": [
+        "email_templates.md",
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "07_Social_Media": {
+      "id": "07_Social_Media",
+      "title": "Social Media",
+      "category": "Introduction and Fundamentals",
+      "summary": "---\n{\n    \"title\": \"Social Media\",\n    \"subtitle\": \"Essential Resources for Social Media\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "social",
+        "media"
+      ],
+      "content_files": [
+        "content_calendar.md",
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "08_SEO_Checklists": {
+      "id": "08_SEO_Checklists",
+      "title": "SEO Checklists",
+      "category": "Introduction and Fundamentals",
+      "summary": "---\n{\n    \"title\": \"SEO Checklists\",\n    \"subtitle\": \"Essential Resources for SEO Checklists\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "seo",
+        "checklists"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md",
+        "seo_checklist.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "09_Workflow_Automation": {
+      "id": "09_Workflow_Automation",
+      "title": "Workflow Automation",
+      "category": "Introduction and Fundamentals",
+      "summary": "---\n{\n    \"title\": \"Workflow Automation\",\n    \"subtitle\": \"Essential Resources for Workflow Automation\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "workflow",
+        "automation"
+      ],
+      "content_files": [
+        "automation_templates.md",
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "10_Blog_Templates": {
+      "id": "10_Blog_Templates",
+      "title": "Blog Templates",
+      "category": "Introduction and Fundamentals",
+      "summary": "---\n{\n    \"title\": \"Blog Templates\",\n    \"subtitle\": \"Essential Resources for Blog Templates\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "blog",
+        "templates"
+      ],
+      "content_files": [
+        "blog_templates.md",
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "11_Video_Scripts": {
+      "id": "11_Video_Scripts",
+      "title": "Video Scripts",
+      "category": "Advanced Strategies",
+      "summary": "---\n{\n    \"title\": \"Video Scripts\",\n    \"subtitle\": \"Essential Resources for Video Scripts\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "video",
+        "scripts"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md",
+        "video_templates.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "12_Graphic_Design": {
+      "id": "12_Graphic_Design",
+      "title": "Graphic Design",
+      "category": "Advanced Strategies",
+      "summary": "---\n{\n    \"title\": \"Graphic Design\",\n    \"subtitle\": \"Essential Resources for Graphic Design\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "graphic",
+        "design"
+      ],
+      "content_files": [
+        "design_resources.md",
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "13_Online_Courses": {
+      "id": "13_Online_Courses",
+      "title": "Online Courses",
+      "category": "Advanced Strategies",
+      "summary": "---\n{\n    \"title\": \"Online Courses\",\n    \"subtitle\": \"Essential Resources for Online Courses\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "online",
+        "courses"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "14_Ebook_Summaries": {
+      "id": "14_Ebook_Summaries",
+      "title": "Ebook Summaries",
+      "category": "Advanced Strategies",
+      "summary": "---\n{\n    \"title\": \"Ebook Summaries\",\n    \"subtitle\": \"Essential Resources for Ebook Summaries\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "ebook",
+        "summaries"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "15_Guide_Summaries": {
+      "id": "15_Guide_Summaries",
+      "title": "Guide Summaries",
+      "category": "Advanced Strategies",
+      "summary": "---\n{\n    \"title\": \"Guide Summaries\",\n    \"subtitle\": \"Essential Resources for Guide Summaries\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "guide",
+        "summaries"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "16_Whitepaper_Summaries": {
+      "id": "16_Whitepaper_Summaries",
+      "title": "Whitepaper Summaries",
+      "category": "Advanced Strategies",
+      "summary": "---\n{\n    \"title\": \"Whitepaper Summaries\",\n    \"subtitle\": \"Essential Resources for Whitepaper Summaries\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "whitepaper",
+        "summaries"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "17_AI_Tutorials": {
+      "id": "17_AI_Tutorials",
+      "title": "AI Tutorials",
+      "category": "Advanced Strategies",
+      "summary": "---\n{\n    \"title\": \"AI Tutorials\",\n    \"subtitle\": \"Essential Resources for AI Tutorials\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "ai",
+        "tutorials"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "18_AI_Case_Studies": {
+      "id": "18_AI_Case_Studies",
+      "title": "AI Case Studies",
+      "category": "Advanced Strategies",
+      "summary": "---\n{\n    \"title\": \"AI Case Studies\",\n    \"subtitle\": \"Essential Resources for AI Case Studies\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "ai",
+        "case",
+        "studies"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "19_Digital_Marketing": {
+      "id": "19_Digital_Marketing",
+      "title": "Digital Marketing",
+      "category": "Advanced Strategies",
+      "summary": "---\n{\n    \"title\": \"Digital Marketing\",\n    \"subtitle\": \"Essential Resources for Digital Marketing\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "digital",
+        "marketing"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "20_Success_Stories": {
+      "id": "20_Success_Stories",
+      "title": "Success Stories",
+      "category": "Advanced Strategies",
+      "summary": "---\n{\n    \"title\": \"Success Stories\",\n    \"subtitle\": \"Essential Resources for Success Stories\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "success",
+        "stories"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "21_Business_Plans": {
+      "id": "21_Business_Plans",
+      "title": "Business Plans",
+      "category": "Professional Development",
+      "summary": "---\n{\n    \"title\": \"Business Plans\",\n    \"subtitle\": \"Essential Resources for Business Plans\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "business",
+        "plans"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "22_Networking_Tips": {
+      "id": "22_Networking_Tips",
+      "title": "Networking Tips",
+      "category": "Professional Development",
+      "summary": "---\n{\n    \"title\": \"Networking Tips\",\n    \"subtitle\": \"Essential Resources for Networking Tips\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "networking",
+        "tips"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "23_Discussion_Forum": {
+      "id": "23_Discussion_Forum",
+      "title": "Discussion Forum",
+      "category": "Professional Development",
+      "summary": "---\n{\n    \"title\": \"Discussion Forum\",\n    \"subtitle\": \"Essential Resources for Discussion Forum\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "discussion",
+        "forum"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "24_AMA_Guidelines": {
+      "id": "24_AMA_Guidelines",
+      "title": "AMA Guidelines",
+      "category": "Professional Development",
+      "summary": "---\n{\n    \"title\": \"AMA Guidelines\",\n    \"subtitle\": \"Essential Resources for AMA Guidelines\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "ama",
+        "guidelines"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "25_Interview_Frameworks": {
+      "id": "25_Interview_Frameworks",
+      "title": "Interview Frameworks",
+      "category": "Professional Development",
+      "summary": "---\n{\n    \"title\": \"Interview Frameworks\",\n    \"subtitle\": \"Essential Resources for Interview Frameworks\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "interview",
+        "frameworks"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "26_Monthly_Updates": {
+      "id": "26_Monthly_Updates",
+      "title": "Monthly Updates",
+      "category": "Professional Development",
+      "summary": "---\n{\n    \"title\": \"Monthly Updates\",\n    \"subtitle\": \"Essential Resources for Monthly Updates\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "monthly",
+        "updates"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md",
+        "stakeholder_meeting_template.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "27_Newsletter_Drafts": {
+      "id": "27_Newsletter_Drafts",
+      "title": "Newsletter Drafts",
+      "category": "Professional Development",
+      "summary": "---\n{\n    \"title\": \"Newsletter Drafts\",\n    \"subtitle\": \"Essential Resources for Newsletter Drafts\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "newsletter",
+        "drafts"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "29_Real_Life_Examples": {
+      "id": "29_Real_Life_Examples",
+      "title": "Real Life Examples",
+      "category": "Professional Development",
+      "summary": "---\n{\n    \"title\": \"Real Life Examples\",\n    \"subtitle\": \"Essential Resources for Real Life Examples\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "real",
+        "life",
+        "examples"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "30_Success_Metrics": {
+      "id": "30_Success_Metrics",
+      "title": "Success Metrics",
+      "category": "Professional Development",
+      "summary": "---\n{\n    \"title\": \"Success Metrics\",\n    \"subtitle\": \"Essential Resources for Success Metrics\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "success",
+        "metrics"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Advanced"
+    },
+    "31_Prompt_Toolkit": {
+      "id": "31_Prompt_Toolkit",
+      "title": "Prompt Toolkit",
+      "category": "Tools and Resources",
+      "summary": "---\n{\n    \"title\": \"Prompt Toolkit\",\n    \"subtitle\": \"Essential Resources for Prompt Toolkit\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "prompt",
+        "toolkit"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "32_Free_Tools": {
+      "id": "32_Free_Tools",
+      "title": "Free Tools",
+      "category": "Tools and Resources",
+      "summary": "---\n{\n    \"title\": \"Free Tools\",\n    \"subtitle\": \"Essential Resources for Free Tools\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "free",
+        "tools"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "33_Offer_Templates": {
+      "id": "33_Offer_Templates",
+      "title": "Offer Templates",
+      "category": "Tools and Resources",
+      "summary": "---\n{\n    \"title\": \"Offer Templates\",\n    \"subtitle\": \"Essential Resources for Offer Templates\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "offer",
+        "templates"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "34_Best_Practices": {
+      "id": "34_Best_Practices",
+      "title": "Best Practices",
+      "category": "Tools and Resources",
+      "summary": "# Best Practices Guide",
+      "tags": [
+        "best",
+        "practices"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "35_Remote_Work": {
+      "id": "35_Remote_Work",
+      "title": "Remote Work",
+      "category": "Tools and Resources",
+      "summary": "# Remote Work Guide",
+      "tags": [
+        "remote",
+        "work"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "36_Personal_Development": {
+      "id": "36_Personal_Development",
+      "title": "Personal Development",
+      "category": "Tools and Resources",
+      "summary": "# Personal Development Guide",
+      "tags": [
+        "personal",
+        "development"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "37_Project_Management": {
+      "id": "37_Project_Management",
+      "title": "Project Management",
+      "category": "Tools and Resources",
+      "summary": "# Project Management Guide",
+      "tags": [
+        "project",
+        "management"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "38_Time_Management": {
+      "id": "38_Time_Management",
+      "title": "Time Management",
+      "category": "Tools and Resources",
+      "summary": "# Time Management Guide",
+      "tags": [
+        "time",
+        "management"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "39_Leadership_Skills": {
+      "id": "39_Leadership_Skills",
+      "title": "Leadership Skills",
+      "category": "Tools and Resources",
+      "summary": "# Leadership Skills Guide",
+      "tags": [
+        "leadership",
+        "skills"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "40_Feedback_Forms": {
+      "id": "40_Feedback_Forms",
+      "title": "Feedback Forms",
+      "category": "Tools and Resources",
+      "summary": "---\n{\n    \"title\": \"Feedback Forms\",\n    \"subtitle\": \"Essential Resources for Feedback Forms\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "feedback",
+        "forms"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md",
+        "user_feedback_form.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "41_Interview_Prep": {
+      "id": "41_Interview_Prep",
+      "title": "Interview Prep",
+      "category": "Advanced Topics",
+      "summary": "# Interview Preparation Guide",
+      "tags": [
+        "interview",
+        "prep"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "42_Code_Review": {
+      "id": "42_Code_Review",
+      "title": "Code Review",
+      "category": "Advanced Topics",
+      "summary": "# Code Review Guide",
+      "tags": [
+        "code",
+        "review"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "43_System_Design": {
+      "id": "43_System_Design",
+      "title": "System Design",
+      "category": "Advanced Topics",
+      "summary": "# System Design Guide",
+      "tags": [
+        "system",
+        "design"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "44_Documentation": {
+      "id": "44_Documentation",
+      "title": "Documentation",
+      "category": "Advanced Topics",
+      "summary": "# Documentation Guide",
+      "tags": [
+        "documentation"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    },
+    "45_Final_Words": {
+      "id": "45_Final_Words",
+      "title": "Final Words",
+      "category": "Advanced Topics",
+      "summary": "---\n{\n    \"title\": \"Final Words\",\n    \"subtitle\": \"Essential Resources for Final Words\",\n    \"description\": \"A comprehensive guide and resource collection\"\n}\n---",
+      "tags": [
+        "final",
+        "words"
+      ],
+      "content_files": [
+        "index.html",
+        "README.md"
+      ],
+      "difficulty": "Expert"
+    }
+  }
+}

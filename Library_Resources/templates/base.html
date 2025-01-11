@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Resource Library</title>
+    <link rel="stylesheet" href="/static/css/dark-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="nav-menu">
+        <div class="container">
+            <nav>
+                <a href="/" class="logo">
+                    <img src="/static/images/logo.png" alt="Resource Library" height="40">
+                </a>
+                <div class="nav-links">
+                    <a href="/sitemap">Sitemap</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/email-marketing">Email Marketing</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Resource Library. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/unsubscribe">Unsubscribe</a> |
+                <a href="/preferences">Update Preferences</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

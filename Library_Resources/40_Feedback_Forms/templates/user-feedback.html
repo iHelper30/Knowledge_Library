@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Feedback Form</title>
+    <link rel="stylesheet" href="../../templates/styles/theme.css">
+    <style>
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .rating {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .rating button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+        }
+        .rating button.selected {
+            background: var(--color-primary);
+            color: white;
+        }
+        .feedback-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form class="feedback-form" id="userFeedbackForm">
+            <h1>User Feedback</h1>
+            
+            <div class="form-group">
+                <label for="satisfaction">Overall Satisfaction</label>
+                <div class="rating" id="satisfactionRating">
+                    <button type="button" data-value="1">1</button>
+                    <button type="button" data-value="2">2</button>
+                    <button type="button" data-value="3">3</button>
+                    <button type="button" data-value="4">4</button>
+                    <button type="button" data-value="5">5</button>
+                </div>
+                <input type="hidden" name="satisfaction" id="satisfaction" required>
+            </div>
+
+            <div class="form-group">
+                <label for="usability">Ease of Use</label>
+                <div class="rating" id="usabilityRating">
+                    <button type="button" data-value="1">1</button>
+                    <button type="button" data-value="2">2</button>
+                    <button type="button" data-value="3">3</button>
+                    <button type="button" data-value="4">4</button>
+                    <button type="button" data-value="5">5</button>
+                </div>
+                <input type="hidden" name="usability" id="usability" required>
+            </div>
+
+            <div class="form-group">
+                <label for="features">Most Used Features</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="features" value="email_templates"> Email Templates
+                    </label>
+                    <label>
+                        <input type="checkbox" name="features" value="blog_templates"> Blog Templates
+                    </label>
+                    <label>
+                        <input type="checkbox" name="features" value="ai_tutorials"> AI Tutorials
+                    </label>
+                    <label>
+                        <input type="checkbox" name="features" value="video_scripts"> Video Scripts
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="improvements">What could we improve?</label>
+                <textarea name="improvements" id="improvements" rows="4" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="newFeatures">Suggested New Features</label>
+                <textarea name="newFeatures" id="newFeatures" rows="4" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email (optional)</label>
+                <input type="email" name="email" id="email" class="form-control">
+            </div>
+
+            <button type="submit" class="button primary">Submit Feedback</button>
+        </form>
+    </div>
+
+    <script>
+        // Handle rating selection
+        document.querySelectorAll('.rating').forEach(rating => {
+            const buttons = rating.querySelectorAll('button');
+            const input = document.getElementById(rating.id.replace('Rating', ''));
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('selected'));
+                    button.classList.add('selected');
+                    input.value = button.dataset.value;
+                });
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('userFeedbackForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Add timestamp
+            data.timestamp = new Date().toISOString();
+            
+            try {
+                // Here you would typically send the data to your server
+                console.log('Feedback submitted:', data);
+                
+                // Show success message
+                alert('Thank you for your feedback!');
+                e.target.reset();
+                
+                // Reset ratings
+                document.querySelectorAll('.rating button').forEach(button => {
+                    button.classList.remove('selected');
+                });
+            } catch (error) {
+                console.error('Error submitting feedback:', error);
+                alert('There was an error submitting your feedback. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

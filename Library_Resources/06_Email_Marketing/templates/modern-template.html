@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="en" style='/* Color Theme */
+--color-primary: #00f3ff;
+/* Neon Blue */
+--color-background: #0a0a0a;
+/* Deep Black */
+--color-text: #e0e0e0;
+/* Light Gray */
+--color-accent: #005c66;
+/* Dark Cyan */
+/* Color Variants */
+--color-primary-light: #4dffff;
+--color-primary-dark: #00c4cc;
+--color-background-light: #1a1a1a;
+--color-background-dark: #000;
+--color-text-muted: #a0a0a0;
+--color-accent-light: #007a88;
+--color-accent-dark: #004048;
+/* Spacing */
+--spacing-xs: 0.25rem;
+--spacing-sm: 0.5rem;
+--spacing-md: 1rem;
+--spacing-lg: 2rem;
+--spacing-xl: 4rem;
+/* Typography */
+--font-family: "Inter", system-ui, -apple-system, sans-serif;
+--font-size-base: 16px;
+--line-height-base: 1.5;
+/* Border Radius */
+--border-radius-sm: 4px;
+--border-radius-md: 8px;
+--border-radius-lg: 16px;
+/* Transitions */
+--transition-fast: 150ms ease;
+--transition-normal: 300ms ease;
+--transition-slow: 500ms ease;
+/* Shadows */
+--shadow-sm: 0 2px 4px rgba(0, 243, 255, 0.1);
+--shadow-md: 0 4px 8px rgba(0, 243, 255, 0.15);
+--shadow-lg: 0 8px 16px rgba(0, 243, 255, 0.2); font-size: 16px;
+background-color: #0a0a0a;
+color: #e0e0e0'>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="dark" name="color-scheme"/>
+<meta content="{{description}}" name="description"/>
+<!--[if !mso]><!-->
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<!--<![endif]-->
+<title>{{subject}}</title>
+
+<style type="text/css">
+        /* Reset styles */
+        body, #bodyTable { 
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            height: 100% !important;
+            background-color: #0a0a0a;
+        }
+        
+        /* Client-specific styles */
+        body, table, td, p, a, li, blockquote {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        
+        /* Modern design system */
+        :root {
+            --neon-blue: #00f3ff;
+            --dark-bg: #0a0a0a;
+            --gray-light: #e0e0e0;
+            --accent-dark: #005c66;
+        }
+        
+        /* Typography */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+        
+        /* Container styles */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--dark-bg);
+            color: var(--gray-light);
+            font-family: 'Inter', Arial, sans-serif;
+        }
+        
+        /* Header styles */
+        .header {
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-blue);
+        }
+        
+        /* Content styles */
+        .content {
+            padding: 30px 20px;
+            line-height: 1.6;
+        }
+        
+        /* Button styles */
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 20px 0;
+            background-color: var(--neon-blue);
+            color: var(--dark-bg) !important;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Footer styles */
+        .footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #222;
+        }
+        
+        /* Responsive styles */
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 100% !important;
+            }
+            
+            .content {
+                padding: 20px 15px !important;
+            }
+            
+            .button {
+                display: block;
+                text-align: center;
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .container {
+                background-color: var(--dark-bg) !important;
+                color: var(--gray-light) !important;
+            }
+            
+            .button {
+                background-color: var(--neon-blue) !important;
+                color: var(--dark-bg) !important;
+            }
+        }
+    </style>
+</head>
+<body style='font-family: "Inter", system-ui, -apple-system, sans-serif;
+line-height: 1.5;
+margin: 0;
+padding: 0;
+min-height: 100vh;
+display: flex;
+flex-direction: column'>
+<table border="0" cellpadding="0" cellspacing="0" id="bodyTable" role="presentation" style="width: 100%;
+border-collapse: collapse;
+margin: 1rem 0" width="100%">
+<tr>
+<td align="center" style="padding: 0.5rem;
+border: 1px solid #005c66" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" class="container" role="presentation" style="width: 100%;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 1rem; width: 100%;
+border-collapse: collapse;
+margin: 1rem 0" width="600">
+<!-- Header -->
+<tr>
+<td class="header" style="padding: 0.5rem;
+border: 1px solid #005c66">
+<img alt="{{company_name}}" src="{{logo_url}}" style="max-width: 200px; height: auto;"/>
+</td>
+</tr>
+<!-- Main Content -->
+<tr>
+<td class="content" style="padding: 0.5rem;
+border: 1px solid #005c66">
+<h1 style="color: var(--neon-blue); margin-bottom: 20px; color: #00f3ff;
+margin-top: 2rem;
+margin-bottom: 1rem; font-size: 2.5rem">{{heading}}</h1>
+<p style="margin-bottom: 1rem">{{greeting}},</p>
+<p style="margin-bottom: 1rem">{{main_content}}</p>
+<a class="button" href="{{cta_link}}" style="color: #00f3ff;
+text-decoration: none;
+transition: color var(--transition-fast); display: inline-block;
+padding: 0.5rem 1rem;
+background-color: #005c66;
+color: #e0e0e0;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+transition: all var(--transition-fast)">{{cta_text}}</a>
+<p style="margin-top: 30px; margin-bottom: 1rem">{{closing}}</p>
+<p style="margin-bottom: 1rem">{{signature}}</p>
+</td>
+</tr>
+<!-- Footer -->
+<tr>
+<td class="footer" style="padding: 0.5rem;
+border: 1px solid #005c66">
+<p style="margin-bottom: 1rem">{{company_name}}</p>
+<p style="margin-bottom: 1rem">{{company_address}}</p>
+<p style="margin-bottom: 1rem"><a href="{{unsubscribe_link}}" style="color: #666; color: #00f3ff;
+text-decoration: none;
+transition: color var(--transition-fast)">Unsubscribe</a> | <a href="{{preferences_link}}" style="color: #666; color: #00f3ff;
+text-decoration: none;
+transition: color var(--transition-fast)">Update Preferences</a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>

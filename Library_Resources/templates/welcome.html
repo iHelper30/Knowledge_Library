@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="welcome-section">
+    <h1 class="text-cyan">Welcome to the Future! 🚀</h1>
+    
+    <div class="card">
+        <p>Hi {{ first_name }},</p>
+        <p>We're thrilled to have you join our community! You've just taken the first step towards transforming your digital presence.</p>
+        
+        <h2>Here's what you can expect:</h2>
+        <ul class="feature-list">
+            <li>✨ Exclusive resources and tools</li>
+            <li>📊 Weekly expert insights</li>
+            <li>🎯 Personalized growth strategies</li>
+            <li>💪 Community support</li>
+        </ul>
+
+        <button class="button">START YOUR JOURNEY</button>
+        
+        <p class="mt-4">Ready to dive in? Click the button above to access your personalized dashboard.</p>
+    </div>
+
+    <div class="signature mt-4">
+        <p>To your success,</p>
+        <p>The {{ company_name }} Team</p>
+    </div>
+</div>
+
+<style>
+.welcome-section {
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.feature-list li {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+.signature {
+    color: var(--dark-text);
+    opacity: 0.9;
+}
+</style>
+{% endblock %}

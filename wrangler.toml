@@ -1,0 +1,8 @@
+name = "comprehensive-resource-library"
+type = "webpack"
+account_id = "test_account_456"
+workers_dev = true
+
+[site]
+bucket = "./Library_Resources"
+entry-point = "workers-site"

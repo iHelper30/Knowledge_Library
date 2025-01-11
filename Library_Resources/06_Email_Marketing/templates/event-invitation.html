@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" style='/* Color Theme */
+--color-primary: #00f3ff;
+/* Neon Blue */
+--color-background: #0a0a0a;
+/* Deep Black */
+--color-text: #e0e0e0;
+/* Light Gray */
+--color-accent: #005c66;
+/* Dark Cyan */
+/* Color Variants */
+--color-primary-light: #4dffff;
+--color-primary-dark: #00c4cc;
+--color-background-light: #1a1a1a;
+--color-background-dark: #000;
+--color-text-muted: #a0a0a0;
+--color-accent-light: #007a88;
+--color-accent-dark: #004048;
+/* Spacing */
+--spacing-xs: 0.25rem;
+--spacing-sm: 0.5rem;
+--spacing-md: 1rem;
+--spacing-lg: 2rem;
+--spacing-xl: 4rem;
+/* Typography */
+--font-family: "Inter", system-ui, -apple-system, sans-serif;
+--font-size-base: 16px;
+--line-height-base: 1.5;
+/* Border Radius */
+--border-radius-sm: 4px;
+--border-radius-md: 8px;
+--border-radius-lg: 16px;
+/* Transitions */
+--transition-fast: 150ms ease;
+--transition-normal: 300ms ease;
+--transition-slow: 500ms ease;
+/* Shadows */
+--shadow-sm: 0 2px 4px rgba(0, 243, 255, 0.1);
+--shadow-md: 0 4px 8px rgba(0, 243, 255, 0.15);
+--shadow-lg: 0 8px 16px rgba(0, 243, 255, 0.2); font-size: 16px;
+background-color: #0a0a0a;
+color: #e0e0e0'>
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="dark" name="color-scheme"/>
+    <meta content="You're invited to our exclusive event" name="description"/>
+    <title>{{event_name}} - You're Invited!</title>
+
+    <style type="text/css">
+        /* Include base styles from modern-template.html */
+        
+        /* Event invitation specific styles */
+        .event-hero {
+            background: linear-gradient(135deg, rgba(0,243,255,0.15) 0%, rgba(10,10,10,1) 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .event-date {
+            font-size: 24px;
+            color: #00f3ff;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .event-location {
+            font-size: 18px;
+            color: #e0e0e0;
+            margin-bottom: 20px;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: rgba(0,243,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 80px;
+        }
+        
+        .countdown-number {
+            font-size: 28px;
+            color: #00f3ff;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 14px;
+            color: #e0e0e0;
+        }
+        
+        .speaker-card {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0,243,255,0.05);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .speaker-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .agenda-item {
+            padding: 15px;
+            border-left: 2px solid #00f3ff;
+            margin: 15px 0;
+            background: rgba(0,243,255,0.05);
+        }
+        
+        .agenda-time {
+            color: #00f3ff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body style='font-family: "Inter", system-ui, -apple-system, sans-serif;
+line-height: 1.5;
+margin: 0;
+padding: 0;
+min-height: 100vh;
+display: flex;
+flex-direction: column'>
+    <header>
+        <nav>
+            <div class="container">
+                <a href="../../../index.html">Home</a> |
+                <a href="../../../sitemap.html">Sitemap</a> |
+                <a href="../../../contact.html">Contact</a> |
+                <a href="../../index.html">Email Marketing</a>
+            </div>
+        </nav>
+    </header>
+    <table border="0" cellpadding="0" cellspacing="0" id="bodyTable" role="presentation" style="width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0" width="100%">
+    <tr>
+    <td align="center" style="padding: 0.5rem;
+    border: 1px solid #005c66" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" class="container" role="presentation" style="width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem; width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0" width="600">
+    <!-- Header -->
+    <tr>
+    <td class="header" style="padding: 0.5rem;
+    border: 1px solid #005c66">
+    <img alt="{{company_name}}" src="{{logo_url}}" style="max-width: 200px; height: auto;"/>
+    </td>
+    </tr>
+    <!-- Main Content -->
+    <tr>
+    <td class="content" style="padding: 0.5rem;
+    border: 1px solid #005c66">
+    <!-- Event Hero -->
+    <div class="event-hero">
+    <h1 style="color: #00f3ff; color: #00f3ff;
+    margin-top: 2rem;
+    margin-bottom: 1rem; font-size: 2.5rem">{{event_name}}</h1>
+    <p style="font-size: 18px; color: #e0e0e0; margin-bottom: 1rem">{{event_tagline}}</p>
+    <div class="event-date">{{event_date}}</div>
+    <div class="event-location">
+    <i class="fas fa-map-marker-alt"></i> {{event_location}}
+                            </div>
+    <a class="button" href="{{register_link}}" style="color: #00f3ff;
+    text-decoration: none;
+    transition: color var(--transition-fast); display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #005c66;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--transition-fast)">REGISTER NOW</a>
+    </div>
+    <!-- Countdown -->
+    <div class="countdown">
+    <div class="countdown-item">
+    <div class="countdown-number">{{days}}</div>
+    <div class="countdown-label">Days</div>
+    </div>
+    <div class="countdown-item">
+    <div class="countdown-number">{{hours}}</div>
+    <div class="countdown-label">Hours</div>
+    </div>
+    <div class="countdown-item">
+    <div class="countdown-number">{{minutes}}</div>
+    <div class="countdown-label">Minutes</div>
+    </div>
+    </div>
+    <!-- Featured Speakers -->
+    <h2 style="color: #00f3ff; text-align: center; color: #00f3ff;
+    margin-top: 2rem;
+    margin-bottom: 1rem; font-size: 2rem">Featured Speakers</h2>
+                            {{#each speakers}}
+                            <div class="speaker-card">
+    <img alt="{{name}}" class="speaker-image" src="{{image}}"/>
+    <h3 style="color: #00f3ff; color: #00f3ff;
+    margin-top: 2rem;
+    margin-bottom: 1rem; font-size: 1.75rem">{{name}}</h3>
+    <p style="color: #e0e0e0; margin-bottom: 1rem">{{title}}</p>
+    <p style="color: #e0e0e0; margin-bottom: 1rem">{{bio}}</p>
+    </div>
+                            {{/each}}
+                            
+
+                            <!-- Agenda -->
+    <h2 style="color: #00f3ff; color: #00f3ff;
+    margin-top: 2rem;
+    margin-bottom: 1rem; font-size: 2rem">Event Agenda</h2>
+                            {{#each agenda_items}}
+                            <div class="agenda-item">
+    <div class="agenda-time">{{time}}</div>
+    <h4 style="color: #00f3ff; color: #00f3ff;
+    margin-top: 2rem;
+    margin-bottom: 1rem; font-size: 1.5rem">{{title}}</h4>
+    <p style="color: #e0e0e0; margin-bottom: 1rem">{{description}}</p>
+    </div>
+                            {{/each}}
+                            
+
+                            <!-- Call to Action -->
+    <div style="text-align: center; margin: 40px 0;">
+    <h2 style="color: #00f3ff; color: #00f3ff;
+    margin-top: 2rem;
+    margin-bottom: 1rem; font-size: 2rem">{{cta_title}}</h2>
+    <p style="font-size: 18px; color: #e0e0e0; margin-bottom: 1rem">{{cta_description}}</p>
+    <a class="button" href="{{register_link}}" style="color: #00f3ff;
+    text-decoration: none;
+    transition: color var(--transition-fast); display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #005c66;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--transition-fast)">SECURE YOUR SPOT</a>
+    </div>
+    </td>
+    </tr>
+    <!-- Footer -->
+    <tr>
+    <td class="footer" style="padding: 0.5rem;
+    border: 1px solid #005c66">
+    <p style="margin-bottom: 1rem">{{company_name}}</p>
+    <p style="margin-bottom: 1rem">{{company_address}}</p>
+    <p style="margin-bottom: 1rem"><a href="{{calendar_link}}" style="color: #666; color: #00f3ff;
+    text-decoration: none;
+    transition: color var(--transition-fast)">Add to Calendar</a> | 
+                               <a href="{{unsubscribe_link}}" style="color: #666; color: #00f3ff;
+    text-decoration: none;
+    transition: color var(--transition-fast)">Unsubscribe</a></p>
+    </td>
+    </tr>
+    </table>
+    </td>
+    </tr>
+    </table>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Resource Library. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="../../../templates/scripts/navigation.js"></script>
+</body>
+</html>

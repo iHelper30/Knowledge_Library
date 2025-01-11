@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Feedback Form</title>
+    <style>
+        :root {
+            --primary-color: #2196F3;
+            --secondary-color: #FFC107;
+            --text-color: #333;
+            --background-color: #f5f5f5;
+            --error-color: #f44336;
+            --success-color: #4CAF50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .rating-group {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .rating-option {
+            text-align: center;
+        }
+
+        .rating-option input[type="radio"] {
+            margin-bottom: 5px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 30px auto 0;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1976D2;
+        }
+
+        .error {
+            color: var(--error-color);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .success {
+            color: var(--success-color);
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .rating-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .rating-option {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product Feedback Form</h1>
+        <form id="productFeedbackForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="product">Product</label>
+                <select id="product" name="product" required>
+                    <option value="">Select a product</option>
+                    <option value="product1">Product 1</option>
+                    <option value="product2">Product 2</option>
+                    <option value="product3">Product 3</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Overall Satisfaction</label>
+                <div class="rating-group">
+                    <div class="rating-option">
+                        <input type="radio" name="satisfaction" value="1" id="rating1" required>
+                        <label for="rating1">1 - Poor</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" name="satisfaction" value="2" id="rating2">
+                        <label for="rating2">2 - Fair</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" name="satisfaction" value="3" id="rating3">
+                        <label for="rating3">3 - Good</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" name="satisfaction" value="4" id="rating4">
+                        <label for="rating4">4 - Very Good</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" name="satisfaction" value="5" id="rating5">
+                        <label for="rating5">5 - Excellent</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="features">Which features do you find most useful?</label>
+                <textarea id="features" name="features" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="improvements">What improvements would you suggest?</label>
+                <textarea id="improvements" name="improvements" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="likelihood">How likely are you to recommend this product?</label>
+                <select id="likelihood" name="likelihood" required>
+                    <option value="">Select an option</option>
+                    <option value="definitely">Definitely would recommend</option>
+                    <option value="probably">Probably would recommend</option>
+                    <option value="maybe">Might recommend</option>
+                    <option value="probably-not">Probably would not recommend</option>
+                    <option value="definitely-not">Definitely would not recommend</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="additional">Additional Comments</label>
+                <textarea id="additional" name="additional"></textarea>
+            </div>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+        <div id="successMessage" class="success">
+            Thank you for your feedback! Your response has been recorded.
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('productFeedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate form
+            if (this.checkValidity()) {
+                // Here you would typically send the data to your server
+                // For demo purposes, we'll just show the success message
+                this.style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Reset form
+                this.reset();
+            }
+        });
+
+        // Real-time validation
+        const inputs = document.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('invalid', function(e) {
+                e.preventDefault();
+                this.classList.add('error');
+            });
+
+            input.addEventListener('input', function() {
+                if (this.classList.contains('error')) {
+                    this.classList.remove('error');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
