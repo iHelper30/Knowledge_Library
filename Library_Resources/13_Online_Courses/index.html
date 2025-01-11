@@ -3,83 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ meta_description }}">
-    <meta name="keywords" content="{{ keywords }}">
+    <meta name="description" content="A comprehensive guide and resource collection">
+    <meta name="keywords" content="['13', 'online', 'courses']">
     
     <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="{{ title }} | Comprehensive Resource Library">
-    <meta property="og:description" content="{{ meta_description }}">
+    <meta property="og:title" content="Online Courses">
+    <meta property="og:description" content="A comprehensive guide and resource collection">
     <meta property="og:type" content="article">
     
     <!-- Preload critical assets -->
-    <link rel="preload" href="../templates/styles/theme.css" as="style">
+    <link rel="preload" href="../static/css/dark-theme.css" as="style">
     
-    <title>{{ title }} | Comprehensive Resource Library</title>
-    <link rel="stylesheet" href="../templates/styles/theme.css">
+    <title>Online Courses | Resource Library</title>
+    <link rel="stylesheet" href="../static/css/dark-theme.css">
     
     <!-- Schema.org markup -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "{{ title }}",
-        "description": "{{ meta_description }}",
+        "headline": "Online Courses",
+        "description": "A comprehensive guide and resource collection",
         "author": {
             "@type": "Organization",
-            "name": "Comprehensive Resource Library"
+            "name": "iHelper.tech"
         }
     }
     </script>
 </head>
-<body>
-    <header role="banner" class="fade-in">
+<body class="dark-theme">
+    <header class="nav-menu">
         <div class="container">
-            <h1>{{ title }}</h1>
-            <p class="text-muted">{{ subtitle }}</p>
+            <nav class="breadcrumb">
+                <a href="/">Home</a> / Online Courses
+            </nav>
+            <h1>Online Courses</h1>
+            <p class="subtitle">Essential Resources for Online Courses</p>
         </div>
     </header>
 
-    <nav role="navigation" aria-label="Main navigation" class="fade-in">
-        <div class="container nav-links">
-            <a href="../01_Welcome_Message" class="button">Welcome</a>
-            <a href="../02_Purpose_of_Library" class="button">Purpose</a>
-            <a href="../03_Navigation_Guide" class="button">Navigation</a>
-            <a href="../04_Quick_Start_Guides" class="button">Quick Start</a>
-        </div>
-    </nav>
+    <main class="container">
+        <article class="content card">
+            <nav class="section-nav"><ul>
+<li><a href="#overview-🎯">Overview 🎯</a></li>
+<li><a href="#key-features-💡">Key Features 💡</a></li>
+<li><a href="#content-structure-📋">Content Structure 📋</a></li>
+<li><a href="#usage-instructions-📝">Usage Instructions 📝</a></li>
+<li><a href="#additional-resources-🔗">Additional Resources 🔗</a></li>
+<li><a href="#support-and-updates-🔄">Support and Updates 🔄</a></li>
+</ul></nav>
+<h1 id="online-courses">Online Courses 📚</h1>
 
-    <main role="main" class="container">
-        <article class="card fade-in">
-            {{ content }}
+<h2 id="overview">Overview 🎯</h2>
+
+<p>A comprehensive collection of resources and guides for Online Courses, designed to help you quickly understand and implement best practices.</p>
+
+<h2 id="key-features">Key Features 💡</h2>
+
+<ul>
+<li>Detailed templates and examples</li>
+<li>Step-by-step guides and tutorials</li>
+<li>Best practices and industry standards</li>
+<li>Practical tips and recommendations</li>
+<li>Implementation strategies</li>
+</ul>
+
+<h2 id="content-structure">Content Structure 📋</h2>
+
+<ol>
+<li><p><strong>Templates and Examples</strong></p>
+
+<ul>
+<li>Ready-to-use templates</li>
+<li>Real-world examples</li>
+<li>Customizable formats</li>
+</ul></li>
+<li><p><strong>Implementation Guides</strong></p>
+
+<ul>
+<li>Step-by-step instructions</li>
+<li>Best practices</li>
+<li>Common pitfalls to avoid</li>
+</ul></li>
+<li><p><strong>Resources and Tools</strong></p>
+
+<ul>
+<li>Recommended tools</li>
+<li>Additional reading materials</li>
+<li>Community resources</li>
+</ul></li>
+</ol>
+
+<h2 id="usage-instructions">Usage Instructions 📝</h2>
+
+<ol>
+<li>Browse through the available templates and examples</li>
+<li>Select the most appropriate resource for your needs</li>
+<li>Follow the step-by-step implementation guides</li>
+<li>Customize the content to match your requirements</li>
+<li>Refer to the best practices for optimal results</li>
+</ol>
+
+<h2 id="additional-resources">Additional Resources 🔗</h2>
+
+<ul>
+<li>Online documentation and tutorials</li>
+<li>Community forums and discussions</li>
+<li>Expert insights and recommendations</li>
+<li>Related tools and platforms</li>
+<li>Industry best practices</li>
+</ul>
+
+<h2 id="support-and-updates">Support and Updates 🔄</h2>
+
+<ul>
+<li>Regular content updates</li>
+<li>Community contributions</li>
+<li>Issue tracking and resolution</li>
+<li>Feature requests and improvements</li>
+<li>Documentation maintenance</li>
+</ul>
+
         </article>
         
-        <aside role="complementary" class="card bg-light fade-in">
-            <h3>Key Takeaways</h3>
-            {{ key_takeaways }}
-        </aside>
-        
-        <nav class="navigation-links" aria-label="Section navigation">
-            
-            <a href="../12_Graphic_Design" class="button">← Previous</a>
-            
-            
-            <a href="../14_Ebook_Summaries" class="button">Next →</a>
-            
+        <nav class="pagination">
+            <a href="../12_Graphic_Design" class="prev">← Graphic Design</a>
+            <a href="../14_Ebook_Summaries" class="next">Ebook Summaries →</a>
         </nav>
     </main>
 
-    <footer role="contentinfo" class="fade-in">
+    <footer>
         <div class="container">
-            <p class="text-muted">Comprehensive Resource Library - Your Guide to Success</p>
-            <nav aria-label="Footer navigation">
-                <a href="../">Home</a> | 
-                <a href="../sitemap.html">Sitemap</a> | 
-                <a href="../contact.html">Contact</a>
+            <p>&copy; 2024 Resource Library. All rights reserved.</p>
+            <nav class="footer-nav">
+                <a href="/sitemap">Sitemap</a>
+                <a href="/contact">Contact</a>
             </nav>
         </div>
     </footer>
-
-    <!-- Deferred loading of non-critical scripts -->
-    <script src="../templates/scripts/main.js" defer></script>
 </body>
 </html>

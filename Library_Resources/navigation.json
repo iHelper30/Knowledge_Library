@@ -149,14 +149,10 @@
   },
   "39_Leadership_Skills": {
     "previous": "38_Time_Management",
-    "next": "40_Feedback_Forms"
-  },
-  "40_Feedback_Forms": {
-    "previous": "39_Leadership_Skills",
     "next": "41_Interview_Prep"
   },
   "41_Interview_Prep": {
-    "previous": "40_Feedback_Forms",
+    "previous": "39_Leadership_Skills",
     "next": "42_Code_Review"
   },
   "42_Code_Review": {

@@ -3,83 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ meta_description }}">
-    <meta name="keywords" content="{{ keywords }}">
+    <meta name="description" content="A comprehensive collection of resources and guides for navigation guide.">
+    <meta name="keywords" content="['03', 'navigation', 'guide']">
     
     <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="{{ title }} | Comprehensive Resource Library">
-    <meta property="og:description" content="{{ meta_description }}">
+    <meta property="og:title" content="Navigation Guide">
+    <meta property="og:description" content="A comprehensive collection of resources and guides for navigation guide.">
     <meta property="og:type" content="article">
     
     <!-- Preload critical assets -->
-    <link rel="preload" href="../templates/styles/theme.css" as="style">
+    <link rel="preload" href="../static/css/dark-theme.css" as="style">
     
-    <title>{{ title }} | Comprehensive Resource Library</title>
-    <link rel="stylesheet" href="../templates/styles/theme.css">
+    <title>Navigation Guide | Resource Library</title>
+    <link rel="stylesheet" href="../static/css/dark-theme.css">
     
     <!-- Schema.org markup -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "{{ title }}",
-        "description": "{{ meta_description }}",
+        "headline": "Navigation Guide",
+        "description": "A comprehensive collection of resources and guides for navigation guide.",
         "author": {
             "@type": "Organization",
-            "name": "Comprehensive Resource Library"
+            "name": "iHelper.tech"
         }
     }
     </script>
 </head>
-<body>
-    <header role="banner" class="fade-in">
+<body class="dark-theme">
+    <header class="nav-menu">
         <div class="container">
-            <h1>{{ title }}</h1>
-            <p class="text-muted">{{ subtitle }}</p>
+            <nav class="breadcrumb">
+                <a href="/">Home</a> / Navigation Guide
+            </nav>
+            <h1>Navigation Guide</h1>
+            <p class="subtitle">Essential Resources for Navigation Guide</p>
         </div>
     </header>
 
-    <nav role="navigation" aria-label="Main navigation" class="fade-in">
-        <div class="container nav-links">
-            <a href="../01_Welcome_Message" class="button">Welcome</a>
-            <a href="../02_Purpose_of_Library" class="button">Purpose</a>
-            <a href="../03_Navigation_Guide" class="button">Navigation</a>
-            <a href="../04_Quick_Start_Guides" class="button">Quick Start</a>
-        </div>
-    </nav>
+    <main class="container">
+        <article class="content card">
+            <nav class="section-nav"><ul>
+<li><a href="#overview-🎯">Overview 🎯</a></li>
+<li><a href="#key-features-💡">Key Features 💡</a></li>
+<li><a href="#content-structure-📋">Content Structure 📋</a></li>
+<li><a href="#usage-instructions-🔍">Usage Instructions 🔍</a></li>
+<li><a href="#additional-resources-📚">Additional Resources 📚</a></li>
+<li><a href="#support-💬">Support 💬</a></li>
+<li><a href="#updates-🔄">Updates 🔄</a></li>
+</ul></nav>
+<h1 id="navigation-guide">Navigation Guide 📚</h1>
 
-    <main role="main" class="container">
-        <article class="card fade-in">
-            {{ content }}
+<p>A comprehensive collection of resources and guides for navigation guide.</p>
+
+<h2 id="overview">Overview 🎯</h2>
+
+<p>This section provides comprehensive resources and guidance for navigation guide, 
+helping you enhance your professional capabilities and achieve better results.</p>
+
+<h2 id="key-features">Key Features 💡</h2>
+
+<ul>
+<li>Detailed templates and examples</li>
+<li>Step-by-step guides and tutorials</li>
+<li>Best practices and industry standards</li>
+<li>Practical tips and recommendations</li>
+<li>Implementation strategies</li>
+</ul>
+
+<h2 id="content-structure">Content Structure 📋</h2>
+
+<ol>
+<li><p><strong>Templates and Examples</strong></p>
+
+<ul>
+<li>Ready-to-use templates</li>
+<li>Real-world examples</li>
+<li>Customizable formats</li>
+</ul></li>
+<li><p><strong>Implementation Guides</strong></p>
+
+<ul>
+<li>Step-by-step instructions</li>
+<li>Best practices</li>
+<li>Common pitfalls to avoid</li>
+</ul></li>
+<li><p><strong>Resources</strong></p>
+
+<ul>
+<li>Additional reading materials</li>
+<li>Related tools and utilities</li>
+<li>Reference documentation</li>
+</ul></li>
+</ol>
+
+<h2 id="usage-instructions">Usage Instructions 🔍</h2>
+
+<ol>
+<li>Browse through the available templates and resources</li>
+<li>Select the most appropriate template for your needs</li>
+<li>Follow the implementation guides for best results</li>
+<li>Customize the content to match your requirements</li>
+</ol>
+
+<h2 id="additional-resources">Additional Resources 📚</h2>
+
+<ul>
+<li>Check the main documentation for more detailed information</li>
+<li>Visit our knowledge base for frequently asked questions</li>
+<li>Join our community forums for discussions and support</li>
+</ul>
+
+<h2 id="support">Support 💬</h2>
+
+<p>For questions or support:
+- Email: support@ihelper.tech
+- Documentation: docs.ihelper.tech
+- Community: community.ihelper.tech</p>
+
+<h2 id="updates">Updates 🔄</h2>
+
+<p>This section is regularly updated with new content and improvements. 
+Check back frequently for the latest resources and best practices.</p>
+
         </article>
         
-        <aside role="complementary" class="card bg-light fade-in">
-            <h3>Key Takeaways</h3>
-            {{ key_takeaways }}
-        </aside>
-        
-        <nav class="navigation-links" aria-label="Section navigation">
-            
-            <a href="../02_Purpose_of_Library" class="button">← Previous</a>
-            
-            
-            <a href="../04_Quick_Start_Guides" class="button">Next →</a>
-            
+        <nav class="pagination">
+            <a href="../02_Purpose_of_Library" class="prev">← Purpose of Library</a>
+            <a href="../04_Quick_Start_Guides" class="next">Quick Start Guides →</a>
         </nav>
     </main>
 
-    <footer role="contentinfo" class="fade-in">
+    <footer>
         <div class="container">
-            <p class="text-muted">Comprehensive Resource Library - Your Guide to Success</p>
-            <nav aria-label="Footer navigation">
-                <a href="../">Home</a> | 
-                <a href="../sitemap.html">Sitemap</a> | 
-                <a href="../contact.html">Contact</a>
+            <p>&copy; 2024 Resource Library. All rights reserved.</p>
+            <nav class="footer-nav">
+                <a href="/sitemap">Sitemap</a>
+                <a href="/contact">Contact</a>
             </nav>
         </div>
     </footer>
-
-    <!-- Deferred loading of non-critical scripts -->
-    <script src="../templates/scripts/main.js" defer></script>
 </body>
 </html>

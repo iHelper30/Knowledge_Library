@@ -11,7 +11,8 @@ A modular, scalable knowledge management system designed to organize, navigate, 
 1. **Template Generation**
    - Automated HTML template creation
    - Consistent metadata injection
-   - Markdown to HTML conversion
+   - Dark theme support
+   - Responsive design
 
 2. **Navigation System**
    - Linear, sequential knowledge block navigation
@@ -32,10 +33,14 @@ A modular, scalable knowledge management system designed to organize, navigate, 
   - beautifulsoup4
   - html5lib
 
-### Folder Structure Convention
-- Prefix folders with 2-digit numbers (01-50)
+### Folder Structure
+- Prefix folders with 2-digit numbers (01-45)
 - Each folder represents a knowledge block
 - Contains `README.md` and `index.html`
+- Static assets in `/static` directory
+  - CSS: dark-theme.css
+  - JavaScript: main.js
+  - Images and other assets
 
 ## 🚀 Key Scripts
 
