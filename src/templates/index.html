@@ -46,13 +46,37 @@
                 });
 
                 if (response.data.status === 'success') {
+                    // Create a new list item for the generated template
+                    const newTemplatesList = document.querySelector('ul');
+                    const newTemplateItem = document.createElement('li');
+                    const templateLink = document.createElement('a');
+                    
+                    templateLink.href = `/template/${response.data.template_id}_${templateName}`;
+                    templateLink.classList.add('text-brand-secondary', 'hover:text-brand-primary', 'transition-colors', 'duration-200', 'flex', 'items-center');
+                    
+                    templateLink.innerHTML = `
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd" />
+                        </svg>
+                        ${templateName}
+                    `;
+                    
+                    newTemplateItem.appendChild(templateLink);
+                    newTemplatesList.appendChild(newTemplateItem);
+
+                    // Close the modal
+                    document.getElementById('generate-modal').style.display = 'none';
+                    
+                    // Reset form
+                    document.getElementById('generate-template-form').reset();
+                    
+                    // Optional: Show a toast or notification
                     alert(`Template generated successfully: ${response.data.template_id}`);
-                    // Optional: Refresh template list or redirect
-                    location.reload();
                 }
             } catch (error) {
                 console.error('Template generation failed:', error);
-                alert('Failed to generate template. Please check your inputs.');
+                const errorMessage = error.response?.data?.error || 'Failed to generate template. Please check your inputs.';
+                alert(errorMessage);
             }
         }
 
