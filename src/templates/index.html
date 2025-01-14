@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Knowledge Library Templates</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-primary': '#0066cc',
+                        'brand-secondary': '#4a90e2'
+                    }
+                }
+            }
+        }
+
+        // Client-side template generation logic
+        async function loadTemplateTypes() {
+            try {
+                const response = await axios.get('/api/template_types');
+                const selectElement = document.getElementById('template-type');
+                response.data.forEach(type => {
+                    const option = document.createElement('option');
+                    option.value = type;
+                    option.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+                    selectElement.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Failed to load template types:', error);
+                alert('Could not load template types. Please try again later.');
+            }
+        }
+
+        async function generateTemplate(event) {
+            event.preventDefault();
+            const templateType = document.getElementById('template-type').value;
+            const templateName = document.getElementById('template-name').value;
+
+            try {
+                const response = await axios.post('/generate_template', {
+                    template_type: templateType,
+                    name: templateName
+                });
+
+                if (response.data.status === 'success') {
+                    alert(`Template generated successfully: ${response.data.template_id}`);
+                    // Optional: Refresh template list or redirect
+                    location.reload();
+                }
+            } catch (error) {
+                console.error('Template generation failed:', error);
+                alert('Failed to generate template. Please check your inputs.');
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTemplateTypes();
+            document.getElementById('generate-template-form').addEventListener('submit', generateTemplate);
+        });
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col" x-data="{ generateModal: false }">
+    <header class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold text-gray-900">Knowledge Library Templates</h1>
+        </div>
+    </header>
+
+    <!-- Template Generation Modal -->
+    <div id="generate-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center" 
+         x-show="generateModal" 
+         x-cloak>
+        <div class="bg-white p-8 rounded-lg shadow-xl w-96">
+            <h2 class="text-2xl font-bold mb-6 text-brand-primary">Generate New Template</h2>
+            <form id="generate-template-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Template Type</label>
+                    <select id="template-type" 
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand-primary focus:ring focus:ring-brand-primary/50">
+                        <option value="">Select Template Type</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Template Name</label>
+                    <input type="text" 
+                           id="template-name" 
+                           required
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand-primary focus:ring focus:ring-brand-primary/50">
+                </div>
+                <div class="flex justify-between">
+                    <button type="submit" 
+                            class="bg-brand-primary text-white px-4 py-2 rounded hover:bg-brand-secondary transition-colors">
+                        Generate
+                    </button>
+                    <button type="button" 
+                            @click="generateModal = false"
+                            class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition-colors">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-900">Knowledge Library Templates</h1>
+            <button 
+                @click="generateModal = true"
+                class="bg-brand-primary text-white px-4 py-2 rounded hover:bg-brand-secondary transition-colors">
+                Generate New Template
+            </button>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-4 text-brand-primary">New Templates</h2>
+                <ul class="space-y-2">
+                    {% for template in new_templates %}
+                    <li>
+                        <a href="/template/{{ template }}" 
+                           class="text-brand-secondary hover:text-brand-primary transition-colors duration-200 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd" />
+                            </svg>
+                            {{ template }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-4 text-brand-primary">Markdown Templates</h2>
+                <ul class="space-y-2">
+                    {% for template in markdown_templates %}
+                    <li>
+                        <a href="/template/{{ template }}" 
+                           class="text-brand-secondary hover:text-brand-primary transition-colors duration-200 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd" />
+                            </svg>
+                            {{ template }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-xl font-semibold mb-4 text-brand-primary">Quick Actions</h2>
+                    <div class="space-y-4">
+                        <button class="w-full bg-brand-primary text-white py-2 rounded hover:bg-brand-secondary transition-colors">
+                            Generate New Template
+                        </button>
+                        <button class="w-full bg-gray-200 text-gray-800 py-2 rounded hover:bg-gray-300 transition-colors">
+                            Import Custom Template
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm text-gray-500">
+                    Total Templates: {{ new_templates|length + markdown_templates|length }}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            2025 Knowledge Library. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

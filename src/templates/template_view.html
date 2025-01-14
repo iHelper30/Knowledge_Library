@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ template_name }} - Template View</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-primary': '#0066cc',
+                        'brand-secondary': '#4a90e2'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <header class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-900">{{ template_name }}</h1>
+            <a href="/" class="text-brand-primary hover:text-brand-secondary transition-colors">
+                ← Back to Templates
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-4 text-brand-primary">README</h2>
+            <div class="prose max-w-none">
+                {{ readme_content | safe }}
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            {% if metadata %}
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold mb-4 text-brand-primary">Metadata</h3>
+                <pre id="metadata-json" class="bg-gray-100 p-4 rounded text-sm overflow-x-auto">{{ metadata | tojson(indent=2) }}</pre>
+                <button id="copy-metadata" class="mt-2 bg-brand-primary text-white px-4 py-2 rounded hover:bg-brand-secondary transition-colors">
+                    Copy Metadata
+                </button>
+            </div>
+            {% endif %}
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-4 text-brand-primary">Template Content</h2>
+                <div class="prose max-w-none">
+                    {{ template_content | safe }}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            2025 Knowledge Library. Template Management System.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new ClipboardJS('#copy-metadata', {
+                text: function() {
+                    return document.getElementById('metadata-json').textContent;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
