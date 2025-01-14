@@ -9,6 +9,7 @@ import re
 import uuid
 from datetime import datetime
 from typing import Dict, Any
+from werkzeug.exceptions import HTTPException
 
 # Import custom modules
 from .error_handler import handle_error, validate_request, create_error_response, TemplateGenerationError
@@ -63,12 +64,41 @@ GENERATED_TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), '..', 'Generat
 # Ensure generated templates directory exists
 os.makedirs(GENERATED_TEMPLATES_DIR, exist_ok=True)
 
-# Error Handler
+# Global error handler
 @app.errorhandler(Exception)
 def handle_global_error(error):
-    """Global error handler for the application."""
-    error_response = handle_error(error)
-    return create_error_response(error_response)
+    """
+    Global error handler for unhandled exceptions
+    
+    Provides a consistent error response and logs the error
+    """
+    # Log the full error traceback
+    app.logger.error(f"Unhandled Exception: {str(error)}", exc_info=True)
+    
+    # Determine the appropriate error response
+    if isinstance(error, HTTPException):
+        return create_error_response({
+            'message': error.description,
+            'status_code': error.code,
+            'details': {}
+        })
+    
+    # For unexpected errors
+    error_info = {
+        'message': 'An unexpected server error occurred',
+        'status_code': 500,
+        'details': {
+            'error_type': type(error).__name__,
+            'error_message': str(error)
+        }
+    }
+    
+    return create_error_response(error_info)
+
+# Favicon handler to prevent unnecessary errors
+@app.route('/favicon.ico')
+def favicon():
+    return '', 204  # No content, prevents 500 errors
 
 def sanitize_filename(filename):
     """Create a safe filename."""

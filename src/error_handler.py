@@ -1,6 +1,7 @@
 import logging
 from typing import Dict, Any
 from flask import jsonify, Request
+import json
 
 class KnowledgeLibraryError(Exception):
     """Base exception for Knowledge Library errors."""
@@ -98,6 +99,31 @@ def create_error_response(error: Dict[str, Any]):
         error (Dict): Error details dictionary
     
     Returns:
-        Flask JSON response
+        Flask JSON response with appropriate status code
     """
-    return jsonify(error), error.get('status_code', 500)
+    return jsonify({
+        'error': {
+            'message': error.get('message', 'An unexpected error occurred'),
+            'details': error.get('details', {})
+        }
+    }), error.get('status_code', 500)
+
+def log_error(error: Exception, context: Dict[str, Any] = None):
+    """
+    Advanced error logging with context preservation
+    
+    Args:
+        error (Exception): The caught exception
+        context (Dict, optional): Additional context information
+    """
+    error_info = {
+        'type': type(error).__name__,
+        'message': str(error),
+        'context': context or {}
+    }
+    
+    logging.error(f"Detailed Error Log: {json.dumps(error_info, indent=2)}")
+    
+    # Optional: Send to error tracking service
+    # This is a placeholder for services like Sentry, Rollbar, etc.
+    # track_error(error_info)
