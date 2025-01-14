@@ -57,8 +57,69 @@ app = Flask(__name__)
 setup_logging(app)
 CORS(app)
 
-# Initialize favicon handling
-serve_favicon(app)  # Initialize favicon handling
+# Favicon handling with robust error management
+def create_default_favicon(static_dir):
+    """
+    Create a default favicon if one doesn't exist
+    
+    Args:
+        static_dir (str): Directory to save favicon
+    
+    Returns:
+        str: Path to favicon file
+    """
+    try:
+        from PIL import Image, ImageDraw
+        import os
+        
+        # Ensure static directory exists
+        os.makedirs(static_dir, exist_ok=True)
+        favicon_path = os.path.join(static_dir, 'favicon.ico')
+        
+        # Create favicon only if it doesn't exist
+        if not os.path.exists(favicon_path):
+            icon = Image.new('RGBA', (16, 16), (255, 255, 255, 0))
+            draw = ImageDraw.Draw(icon)
+            draw.rectangle([0, 0, 15, 15], fill=(33, 150, 243, 255))  # Material Blue
+            icon.save(favicon_path, 'ICO')
+        
+        return favicon_path
+    
+    except Exception as e:
+        app.logger.error(f"Favicon creation error: {e}")
+        return None
+
+# Add favicon route after app initialization
+def setup_favicon(app):
+    """
+    Set up favicon route with error handling
+    
+    Args:
+        app (Flask): Flask application instance
+    """
+    static_dir = os.path.join(os.path.dirname(__file__), 'static')
+    
+    @app.route('/favicon.ico')
+    def favicon():
+        try:
+            favicon_path = create_default_favicon(static_dir)
+            
+            if favicon_path and os.path.exists(favicon_path):
+                return send_from_directory(
+                    os.path.dirname(favicon_path), 
+                    os.path.basename(favicon_path), 
+                    mimetype='image/x-icon'
+                )
+            
+            # Fallback to no content
+            return '', 204
+        
+        except Exception as e:
+            app.logger.error(f"Favicon serving error: {e}")
+            return '', 204
+
+# Call favicon setup after CORS initialization
+setup_favicon(app)
 
 # Paths
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), '..', 'Templates_NEW')
@@ -98,38 +159,6 @@ def handle_global_error(error):
     }
     
     return create_error_response(error_info)
-
-# Favicon handling
-@app.route('/favicon.ico')
-def favicon():
-    """
-    Robust favicon handling with multiple fallback strategies
-    """
-    try:
-        # Strategy 1: Serve from static directory
-        static_dir = os.path.join(os.path.dirname(__file__), 'static')
-        favicon_path = os.path.join(static_dir, 'favicon.ico')
-        
-        if os.path.exists(favicon_path):
-            return send_from_directory(static_dir, 'favicon.ico', mimetype='image/x-icon')
-        
-        # Strategy 2: Generate a minimal favicon
-        from PIL import Image, ImageDraw
-        
-        icon = Image.new('RGBA', (16, 16), (255, 255, 255, 0))
-        draw = ImageDraw.Draw(icon)
-        draw.rectangle([0, 0, 15, 15], fill=(33, 150, 243, 255))  # Material Blue
-        
-        # Save to static directory
-        os.makedirs(static_dir, exist_ok=True)
-        icon.save(favicon_path, 'ICO')
-        
-        return send_from_directory(static_dir, 'favicon.ico', mimetype='image/x-icon')
-    
-    except Exception as e:
-        # Log error, return no content
-        app.logger.error(f"Favicon generation error: {e}")
-        return '', 204
 
 def sanitize_filename(filename):
     """Create a safe filename."""
