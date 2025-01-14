@@ -21,37 +21,30 @@
 <body class="bg-gray-50 min-h-screen flex flex-col">
     <header class="bg-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-gray-900">{{ template_name }}</h1>
+            <h1 class="text-3xl font-bold text-gray-900">{{ template_name }}</h1>
             <a href="/" class="text-brand-primary hover:text-brand-secondary transition-colors">
                 ← Back to Templates
             </a>
         </div>
     </header>
 
-    <main class="flex-grow container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <main class="flex-grow container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-xl font-semibold mb-4 text-brand-primary">README</h2>
-            <div class="prose max-w-none">
+            <h2 class="text-2xl font-semibold mb-4 text-brand-primary">README</h2>
+            <div class="prose max-w-none markdown-content">
                 {{ readme_content | safe }}
             </div>
         </div>
 
-        <div class="space-y-6">
-            {% if metadata %}
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-lg font-semibold mb-4 text-brand-primary">Metadata</h3>
-                <pre id="metadata-json" class="bg-gray-100 p-4 rounded text-sm overflow-x-auto">{{ metadata | tojson(indent=2) }}</pre>
-                <button id="copy-metadata" class="mt-2 bg-brand-primary text-white px-4 py-2 rounded hover:bg-brand-secondary transition-colors">
-                    Copy Metadata
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-brand-primary">Template Content</h2>
+                <button id="copy-template" class="bg-gray-200 text-gray-800 px-3 py-1 rounded hover:bg-gray-300 transition-colors">
+                    Copy Template
                 </button>
             </div>
-            {% endif %}
-
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-xl font-semibold mb-4 text-brand-primary">Template Content</h2>
-                <div class="prose max-w-none">
-                    {{ template_content | safe }}
-                </div>
+            <div class="prose max-w-none markdown-content" id="template-content">
+                {{ template_content | safe }}
             </div>
         </div>
     </main>
@@ -63,11 +56,30 @@
     </footer>
 
     <script>
+        // Copy template content to clipboard
         document.addEventListener('DOMContentLoaded', function() {
-            new ClipboardJS('#copy-metadata', {
+            const copyButton = document.getElementById('copy-template');
+            const templateContent = document.getElementById('template-content');
+
+            const clipboard = new ClipboardJS(copyButton, {
                 text: function() {
-                    return document.getElementById('metadata-json').textContent;
+                    // Convert markdown to plain text
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = templateContent.innerHTML;
+                    return tempDiv.textContent || tempDiv.innerText;
                 }
+            });
+
+            clipboard.on('success', function(e) {
+                copyButton.textContent = 'Copied!';
+                copyButton.classList.remove('bg-gray-200');
+                copyButton.classList.add('bg-green-200');
+                
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Template';
+                    copyButton.classList.remove('bg-green-200');
+                    copyButton.classList.add('bg-gray-200');
+                }, 2000);
             });
         });
     </script>

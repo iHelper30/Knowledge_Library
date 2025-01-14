@@ -183,25 +183,48 @@ def generate_template():
         from tools.template_generator.validator import TemplateValidator
         valid_types = ['web_app', 'document', 'script', 'data_analysis']
         
-        # Special handling for CI testing
-        is_ci_test = template_type.startswith('CI_Test_')
-        
         if not template_type:
             raise TemplateGenerationError(
                 "Template type is required",
                 details={'required_fields': ['template_type']}
             )
         
-        if not is_ci_test and template_type not in valid_types:
+        if template_type not in valid_types:
             raise TemplateGenerationError(
                 f"Invalid template type. Must be one of: {', '.join(valid_types)}",
                 details={'allowed_types': valid_types}
             )
         
-        # Generate template
-        template_id = str(uuid.uuid4())
-        generated_path = os.path.join(GENERATED_TEMPLATES_DIR, f"{template_id}_{template_name}")
+        # Generate template with structured directory
+        template_id = str(uuid.uuid4())[:8]  # Shorter ID
+        template_dir_name = f"{template_id}_{template_name}"
+        generated_path = os.path.join(TEMPLATES_DIR, template_dir_name)
         os.makedirs(generated_path, exist_ok=True)
+        
+        # Create template files
+        readme_path = os.path.join(generated_path, 'README.md')
+        template_path = os.path.join(generated_path, 'template.md')
+        
+        # Default template content based on type
+        template_contents = {
+            'web_app': f"# {template_name} Web Application Template\n\n## Overview\n\n## Key Features\n\n## Getting Started\n",
+            'document': f"# {template_name} Document Template\n\n## Introduction\n\n## Main Sections\n\n## Conclusion\n",
+            'script': f"# {template_name} Script Template\n\n## Purpose\n\n## Usage\n\n## Dependencies\n",
+            'data_analysis': f"# {template_name} Data Analysis Template\n\n## Dataset\n\n## Methodology\n\n## Insights\n"
+        }
+        
+        # Write README
+        with open(readme_path, 'w') as f:
+            f.write(f"""# {template_name}
+## Template Metadata
+- **Type**: {template_type}
+- **Generated**: {datetime.utcnow().isoformat()}
+- **Template ID**: {template_id}
+""")
+        
+        # Write template content
+        with open(template_path, 'w') as f:
+            f.write(template_contents.get(template_type, "# Default Template\n"))
         
         # Log successful generation
         log_template_generation(template_type, template_name, 'success')
@@ -211,9 +234,8 @@ def generate_template():
         return jsonify({
             'status': 'success',
             'template_id': template_id,
-            'path': generated_path,
-            'message': f'Template {template_name} generated successfully',
-            'ci_test': is_ci_test
+            'path': template_dir_name,
+            'message': f'Template {template_name} generated successfully'
         }), 201
     
     except TemplateGenerationError as e:
@@ -242,45 +264,49 @@ def index():
 def view_template(template_name):
     """View a specific template."""
     app.logger.info(f"Template {template_name} accessed")
-    # Check in NEW templates first
-    new_template_path = os.path.join(TEMPLATES_DIR, template_name)
-    markdown_template_path = os.path.join(MARKDOWN_DIR, template_name)
     
-    if os.path.exists(new_template_path):
-        # For NEW templates, look for README or template.md
-        readme_path = os.path.join(new_template_path, 'README.md')
-        template_path = os.path.join(new_template_path, 'template.md')
-        
-        if os.path.exists(readme_path):
-            with open(readme_path, 'r') as f:
-                readme_content = markdown2.markdown(f.read())
-        else:
-            readme_content = "No README available"
-        
-        if os.path.exists(template_path):
-            with open(template_path, 'r') as f:
-                template_content = markdown2.markdown(f.read())
-        else:
-            template_content = "No template content available"
-        
-        metadata = load_template_metadata(new_template_path)
-        
-    elif os.path.exists(markdown_template_path):
-        # For Markdown templates
-        with open(markdown_template_path, 'r') as f:
+    # Search in NEW templates directory
+    new_template_path = None
+    for potential_template in os.listdir(TEMPLATES_DIR):
+        if potential_template.endswith(template_name):
+            new_template_path = os.path.join(TEMPLATES_DIR, potential_template)
+            break
+    
+    if not new_template_path or not os.path.exists(new_template_path):
+        # If no template found, return a helpful message
+        return render_template('template_view.html', 
+                               template_name=template_name, 
+                               readme_content="Template not found", 
+                               template_content="No template content available")
+    
+    # Look for README and template files
+    readme_path = os.path.join(new_template_path, 'README.md')
+    template_path = os.path.join(new_template_path, 'template.md')
+    
+    # Read README
+    try:
+        with open(readme_path, 'r') as f:
+            readme_content = markdown2.markdown(f.read())
+    except FileNotFoundError:
+        readme_content = "No README available"
+    
+    # Read template content
+    try:
+        with open(template_path, 'r') as f:
             template_content = markdown2.markdown(f.read())
-        readme_content = "Markdown Template"
-        metadata = {}
+    except FileNotFoundError:
+        template_content = "No template content available"
     
-    else:
-        app.logger.warning(f"Template {template_name} not found")
-        return "Template not found", 404
+    # Try to load metadata
+    try:
+        metadata = load_template_metadata(new_template_path)
+    except Exception:
+        metadata = {"name": os.path.basename(new_template_path)}
     
     return render_template('template_view.html', 
-                           template_name=template_name, 
-                           readme_content=readme_content,
-                           template_content=template_content,
-                           metadata=metadata)
+                           template_name=metadata.get('name', template_name), 
+                           readme_content=readme_content, 
+                           template_content=template_content)
 
 @app.route('/api/templates')
 def list_templates():
