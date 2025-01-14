@@ -437,48 +437,48 @@ def list_templates():
         'markdown_templates': markdown_templates
     })
 
-@app.route('/api/template_types')
-def list_template_types():
+@app.route('/api/template_types', methods=['GET'])
+def get_template_types():
     """
-    List available template types with enhanced metadata
+    Retrieve available template types with robust error handling
     
     Returns:
-        JSON response with template types and additional information
+        JSON response with template types or error details
     """
-    PREDEFINED_TYPES = {
-        'web_app': {
-            'display_name': 'Web Application',
-            'description': 'Templates for web-based projects',
-            'icon': '💻'
-        },
-        'document': {
-            'display_name': 'Document',
-            'description': 'Structured document templates',
-            'icon': '📄'
-        },
-        'script': {
-            'display_name': 'Script',
-            'description': 'Programming and automation scripts',
-            'icon': '🖥️'
-        },
-        'data_analysis': {
-            'display_name': 'Data Analysis',
-            'description': 'Research and analytical project templates',
-            'icon': '📊'
-        }
-    }
+    try:
+        # Predefined template types
+        predefined_types = [
+            'project_proposal', 
+            'technical_report', 
+            'research_paper', 
+            'business_plan', 
+            'meeting_minutes', 
+            'software_design'
+        ]
+        
+        # Optional: Add custom template types from configuration or database
+        try:
+            # Example: Load from a configuration file or database
+            custom_types = []  # Placeholder for custom types
+            predefined_types.extend(custom_types)
+        except Exception as custom_type_error:
+            app.logger.warning(f"Could not load custom template types: {custom_type_error}")
+        
+        # Return JSON response
+        return jsonify(predefined_types), 200
     
-    # Log the template types request
-    app.logger.info("Template types API endpoint accessed")
-    
-    return jsonify({
-        'predefined_types': PREDEFINED_TYPES,
-        'custom_type_guidelines': {
-            'min_length': 4,
-            'allowed_characters': 'Alphanumeric and underscores',
-            'example_formats': ['machine_learning', 'project_proposal']
+    except Exception as error:
+        # Log the error
+        app.logger.error(f"Template types retrieval error: {error}")
+        
+        # Create standardized error response
+        error_response = {
+            'message': 'Failed to retrieve template types',
+            'details': str(error),
+            'status_code': 500
         }
-    })
+        
+        return create_error_response(error_response), 500
 
 @app.route('/api/template_preview/<template_name>')
 def template_preview(template_name):

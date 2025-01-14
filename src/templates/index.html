@@ -97,14 +97,68 @@
                 // Clear existing options
                 selectElement.innerHTML = '<option value="">Select Template Type</option>';
                 
-                response.data.forEach(type => {
+                // Safely handle the response
+                const templateTypes = Array.isArray(response.data) 
+                    ? response.data 
+                    : (response.data.template_types || []);
+                
+                if (templateTypes.length === 0) {
+                    ErrorHandler.showErrorModal(
+                        'No Template Types Available', 
+                        'Please contact support or try again later.'
+                    );
+                    return;
+                }
+                
+                templateTypes.forEach(type => {
                     const option = document.createElement('option');
                     option.value = type;
-                    option.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+                    option.textContent = type
+                        .split('_')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
                     selectElement.appendChild(option);
                 });
             } catch (error) {
-                ErrorHandler.handleNetworkError(error);
+                // Enhanced error handling
+                let errorMessage = 'Failed to load template types';
+                let errorDetails = '';
+                
+                if (error.response) {
+                    // Server responded with an error
+                    errorMessage = error.response.data.message || 'Server Error';
+                    errorDetails = `Status: ${error.response.status}`;
+                } else if (error.request) {
+                    // Request made but no response
+                    errorMessage = 'No Server Response';
+                    errorDetails = 'Check your internet connection';
+                } else {
+                    // Error in request setup
+                    errorMessage = 'Request Setup Error';
+                    errorDetails = error.message;
+                }
+                
+                // Log and display error
+                ErrorHandler.log('Template Types Load', error);
+                ErrorHandler.showErrorModal(errorMessage, errorDetails);
+                
+                // Fallback: Add some default template types
+                const fallbackTypes = [
+                    'project_proposal', 
+                    'technical_report', 
+                    'research_paper'
+                ];
+                
+                const selectElement = document.getElementById('template-type');
+                fallbackTypes.forEach(type => {
+                    const option = document.createElement('option');
+                    option.value = type;
+                    option.textContent = type
+                        .split('_')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                    selectElement.appendChild(option);
+                });
             }
         }
 
