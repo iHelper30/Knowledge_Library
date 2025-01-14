@@ -17,11 +17,86 @@
             }
         }
 
+        // Enhanced Error Handling Utility
+        const ErrorHandler = {
+            // Centralized error logging and reporting
+            log: function(context, error) {
+                console.error(`[${context}] Error:`, error);
+                
+                // Optional: Send error to backend logging
+                try {
+                    axios.post('/log_client_error', {
+                        context: context,
+                        error: error.toString(),
+                        stack: error.stack,
+                        timestamp: new Date().toISOString()
+                    }).catch(logError => {
+                        console.warn('Failed to log error to server:', logError);
+                    });
+                } catch (logError) {
+                    console.warn('Error logging failed:', logError);
+                }
+            },
+
+            // Display user-friendly error modal
+            showErrorModal: function(message, details = '') {
+                const errorModal = document.getElementById('error-modal');
+                const errorMessageElement = document.getElementById('error-message');
+                
+                errorMessageElement.innerHTML = `
+                    <strong>${message}</strong>
+                    ${details ? `<div class="text-xs text-gray-500 mt-2">${details}</div>` : ''}
+                `;
+                
+                errorModal.style.display = 'flex';
+            },
+
+            // Handle network-related errors
+            handleNetworkError: function(error) {
+                let message = 'Network Error';
+                let details = '';
+
+                if (error.response) {
+                    // Server responded with an error status
+                    message = error.response.data.message || 'Server Error';
+                    details = `Status: ${error.response.status}`;
+                } else if (error.request) {
+                    // Request made but no response received
+                    message = 'No Server Response';
+                    details = 'Please check your internet connection';
+                } else {
+                    // Error in setting up the request
+                    message = 'Request Setup Error';
+                    details = error.message;
+                }
+
+                this.log('Network Error', error);
+                this.showErrorModal(message, details);
+            }
+        };
+
+        // Favicon Error Handling
+        function setupFaviconErrorHandling() {
+            const faviconLink = document.querySelector("link[rel*='icon']");
+            
+            if (faviconLink) {
+                faviconLink.onerror = function() {
+                    ErrorHandler.log('Favicon', 'Failed to load favicon');
+                    // Optional: Set a fallback favicon or remove the link
+                    this.href = 'data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wEeDhoucSey4gAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAcklEQVQ4y2NgGFQggv//CcQC8QUQ/ydJFMgA4v9AzAjEIEB8kCCQAcT/oZgRiEGAeCARIMPFAGJQAhIHMQYQgxKQOIgxgBiUgMRBjAHEoAQkDmIMIAYlIHEQYwAxKAGJgxgDiEEJSBzEGEAMSkDiIMYAAAAAAElFTkSuQmCC';
+                };
+            }
+        }
+
         // Client-side template generation logic
         async function loadTemplateTypes() {
             try {
                 const response = await axios.get('/api/template_types');
                 const selectElement = document.getElementById('template-type');
+                
+                // Clear existing options
+                selectElement.innerHTML = '<option value="">Select Template Type</option>';
+                
                 response.data.forEach(type => {
                     const option = document.createElement('option');
                     option.value = type;
@@ -29,8 +104,7 @@
                     selectElement.appendChild(option);
                 });
             } catch (error) {
-                console.error('Failed to load template types:', error);
-                alert('Could not load template types. Please try again later.');
+                ErrorHandler.handleNetworkError(error);
             }
         }
 
@@ -74,16 +148,14 @@
                     alert(`Template generated successfully: ${response.data.template_id}`);
                 }
             } catch (error) {
-                console.error('Template generation failed:', error);
-                const errorMessage = error.response?.data?.error || 'Failed to generate template. Please check your inputs.';
-                document.getElementById('error-message').textContent = errorMessage;
-                document.getElementById('error-modal').style.display = 'block';
+                ErrorHandler.handleNetworkError(error);
             }
         }
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
             loadTemplateTypes();
+            setupFaviconErrorHandling();
             document.getElementById('generate-template-form').addEventListener('submit', generateTemplate);
         });
     </script>
