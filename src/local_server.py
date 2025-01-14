@@ -163,6 +163,44 @@ def get_template_metadata(template_name: str):
         app.logger.error(f"Metadata retrieval error: {e}")
         return create_error_response(handle_error(e))
 
+def validate_template_type(template_type):
+    """
+    Adaptive template type validation
+    - Allows predefined types
+    - Permits custom types with optional additional checks
+    - Provides clear, actionable feedback
+    """
+    PREDEFINED_TYPES = {'web_app', 'document', 'script', 'data_analysis'}
+    
+    if not template_type:
+        raise TemplateGenerationError(
+            "Template type is required", 
+            details={'allowed_types': list(PREDEFINED_TYPES)}
+        )
+    
+    # Normalize input
+    normalized_type = template_type.lower().replace(' ', '_')
+    
+    # Primary validation
+    if normalized_type in PREDEFINED_TYPES:
+        return normalized_type
+    
+    # Custom type handling
+    if len(normalized_type) > 3 and normalized_type.replace('_', '').isalnum():
+        # Log custom type for future analysis
+        app.logger.info(f"Custom template type created: {normalized_type}")
+        return normalized_type
+    
+    raise TemplateGenerationError(
+        f"Invalid template type: {template_type}. "
+        f"Must be one of {', '.join(PREDEFINED_TYPES)} "
+        "or a valid custom type.",
+        details={
+            'allowed_types': list(PREDEFINED_TYPES),
+            'custom_type_guidelines': 'Must be at least 4 characters, alphanumeric'
+        }
+    )
+
 @app.route('/generate_template', methods=['POST'])
 def generate_template():
     """Advanced template generation endpoint with comprehensive error handling."""
@@ -174,26 +212,10 @@ def generate_template():
         validate_request(request, ['template_type', 'name'])
         
         data = request.get_json()
-        template_type = data.get('template_type')
+        template_type = validate_template_type(data.get('template_type'))
         template_name = sanitize_filename(data.get('name', f'New_{template_type}_Template'))
         
         app.logger.info(f"Processing template generation: type={template_type}, name={template_name}")
-        
-        # Validate template type
-        from tools.template_generator.validator import TemplateValidator
-        valid_types = ['web_app', 'document', 'script', 'data_analysis']
-        
-        if not template_type:
-            raise TemplateGenerationError(
-                "Template type is required",
-                details={'required_fields': ['template_type']}
-            )
-        
-        if template_type not in valid_types:
-            raise TemplateGenerationError(
-                f"Invalid template type. Must be one of: {', '.join(valid_types)}",
-                details={'allowed_types': valid_types}
-            )
         
         # Generate template with structured directory
         template_id = str(uuid.uuid4())[:8]  # Shorter ID
@@ -205,7 +227,7 @@ def generate_template():
         readme_path = os.path.join(generated_path, 'README.md')
         template_path = os.path.join(generated_path, 'template.md')
         
-        # Default template content based on type
+        # Enhanced template content generation
         template_contents = {
             'web_app': f"# {template_name} Web Application Template\n\n## Overview\n\n## Key Features\n\n## Getting Started\n",
             'document': f"# {template_name} Document Template\n\n## Introduction\n\n## Main Sections\n\n## Conclusion\n",
@@ -213,18 +235,22 @@ def generate_template():
             'data_analysis': f"# {template_name} Data Analysis Template\n\n## Dataset\n\n## Methodology\n\n## Insights\n"
         }
         
-        # Write README
+        # Default content for custom types
+        default_custom_content = f"# {template_name} Custom Template\n\n## Purpose\n\n## Key Components\n\n## Notes\n"
+        
+        # Write README with enhanced metadata
         with open(readme_path, 'w') as f:
             f.write(f"""# {template_name}
 ## Template Metadata
 - **Type**: {template_type}
 - **Generated**: {datetime.utcnow().isoformat()}
 - **Template ID**: {template_id}
+- **Origin**: {'Predefined' if template_type in {'web_app', 'document', 'script', 'data_analysis'} else 'Custom'}
 """)
         
         # Write template content
         with open(template_path, 'w') as f:
-            f.write(template_contents.get(template_type, "# Default Template\n"))
+            f.write(template_contents.get(template_type, default_custom_content))
         
         # Log successful generation
         log_template_generation(template_type, template_name, 'success')
@@ -235,7 +261,8 @@ def generate_template():
             'status': 'success',
             'template_id': template_id,
             'path': template_dir_name,
-            'message': f'Template {template_name} generated successfully'
+            'message': f'Template {template_name} generated successfully',
+            'type': template_type
         }), 201
     
     except TemplateGenerationError as e:
@@ -322,10 +349,46 @@ def list_templates():
 
 @app.route('/api/template_types')
 def list_template_types():
-    """List available template types."""
-    app.logger.info("API: Template types listed")
-    types = [d for d in os.listdir(TEMPLATES_DIR) if os.path.isdir(os.path.join(TEMPLATES_DIR, d))]
-    return jsonify(types)
+    """
+    List available template types with enhanced metadata
+    
+    Returns:
+        JSON response with template types and additional information
+    """
+    PREDEFINED_TYPES = {
+        'web_app': {
+            'display_name': 'Web Application',
+            'description': 'Templates for web-based projects',
+            'icon': '💻'
+        },
+        'document': {
+            'display_name': 'Document',
+            'description': 'Structured document templates',
+            'icon': '📄'
+        },
+        'script': {
+            'display_name': 'Script',
+            'description': 'Programming and automation scripts',
+            'icon': '🖥️'
+        },
+        'data_analysis': {
+            'display_name': 'Data Analysis',
+            'description': 'Research and analytical project templates',
+            'icon': '📊'
+        }
+    }
+    
+    # Log the template types request
+    app.logger.info("Template types API endpoint accessed")
+    
+    return jsonify({
+        'predefined_types': PREDEFINED_TYPES,
+        'custom_type_guidelines': {
+            'min_length': 4,
+            'allowed_characters': 'Alphanumeric and underscores',
+            'example_formats': ['machine_learning', 'project_proposal']
+        }
+    })
 
 @app.route('/api/template_preview/<template_name>')
 def template_preview(template_name):
