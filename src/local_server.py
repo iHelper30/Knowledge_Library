@@ -218,6 +218,41 @@ def load_template_metadata(template_path: str) -> Dict[str, Any]:
             'description': f'Metadata loading failed: {str(e)}'
         }
 
+class TemplateMetadata:
+    """
+    Comprehensive metadata management for generated templates
+    """
+    def __init__(self, template_id, template_type, name, origin='custom'):
+        """
+        Initialize template metadata
+        
+        Args:
+            template_id (str): Unique identifier for the template
+            template_type (str): Type of template
+            name (str): Template name
+            origin (str, optional): Origin of template generation
+        """
+        self.template_id = template_id
+        self.template_type = template_type
+        self.name = name
+        self.origin = origin
+        self.generated_at = datetime.now().isoformat()
+    
+    def to_dict(self):
+        """
+        Convert metadata to dictionary for easy serialization
+        
+        Returns:
+            dict: Template metadata dictionary
+        """
+        return {
+            'template_id': self.template_id,
+            'template_type': self.template_type,
+            'name': self.name,
+            'origin': self.origin,
+            'generated_at': self.generated_at
+        }
+
 @app.route('/api/template_metadata/<template_name>')
 def get_template_metadata(template_name: str):
     """
@@ -307,8 +342,17 @@ def generate_template():
         
         app.logger.info(f"Processing template generation: type={template_type}, name={template_name}")
         
+        # Generate unique template ID
+        template_id = str(uuid.uuid4().int)[:8]
+        
+        # Create template metadata
+        metadata = TemplateMetadata(
+            template_id=template_id, 
+            template_type=template_type, 
+            name=template_name
+        )
+        
         # Generate template with structured directory
-        template_id = str(uuid.uuid4())[:8]  # Shorter ID
         template_dir_name = f"{template_id}_{template_name}"
         generated_path = os.path.join(TEMPLATES_DIR, template_dir_name)
         os.makedirs(generated_path, exist_ok=True)
@@ -352,7 +396,8 @@ def generate_template():
             'template_id': template_id,
             'path': template_dir_name,
             'message': f'Template {template_name} generated successfully',
-            'type': template_type
+            'type': template_type,
+            'metadata': metadata.to_dict()
         }), 201
     
     except TemplateGenerationError as e:
