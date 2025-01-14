@@ -306,6 +306,26 @@ def template_preview(template_name):
     
     return jsonify(preview)
 
+@app.route('/health', methods=['GET'])
+def health_check():
+    """
+    Lightweight health check endpoint for deployment platforms.
+    
+    Returns:
+        JSON response with system status
+    """
+    from datetime import datetime
+    import os
+    return jsonify({
+        'status': 'healthy',
+        'timestamp': datetime.utcnow().isoformat(),
+        'version': '1.0.0',
+        'checks': {
+            'database': 'not_applicable',
+            'templates_dir': os.path.exists(TEMPLATES_DIR)
+        }
+    }), 200
+
 @app.route('/static/<path:filename>')
 def serve_static(filename):
     """Serve static files."""
