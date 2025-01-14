@@ -1,0 +1,19 @@
+{
+  "template_type": "document",
+  "supported_formats": [
+    "md",
+    "txt",
+    "rst",
+    "adoc"
+  ],
+  "dependencies": [],
+  "compatibility": {
+    "platforms": [
+      "web",
+      "windows",
+      "linux",
+      "macos"
+    ],
+    "min_version": "0.1.0"
+  }
+}

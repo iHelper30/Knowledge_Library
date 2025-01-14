@@ -1,8 +1,19 @@
 name = "comprehensive-resource-library"
-type = "webpack"
-account_id = "test_account_456"
+account_id = "b4be968eb5a91a87e25e336007446b2e"
 workers_dev = true
+main = "workers-site/index.js"
+compatibility_date = "2025-01-12"
 
-[site]
-bucket = "./Library_Resources"
-entry-point = "workers-site"
+[build]
+command = "pip install -r requirements.txt && python Library_Resources/metadata_enricher.py"
+watch_dir = ["src", "Library_Resources"]
+
+[env.production]
+routes = [
+    { pattern = "ihelper.tech/templates/*", custom_domain = true }
+]
+
+[env.staging]
+routes = [
+    { pattern = "staging.ihelper.tech/templates/*", custom_domain = true }
+]

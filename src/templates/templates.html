@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}iHelper.Tech - Template Library{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/template_styles.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="page-title">Template Library</h1>
+    <p class="page-description">
+        Explore our collection of professionally designed templates to streamline your workflow.
+    </p>
+    
+    <div id="template-container"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module">
+    import TemplateRenderer from "{{ url_for('static', filename='js/template_renderer.js') }}";
+
+    // Initialize the renderer
+    const renderer = new TemplateRenderer("{{ url_for('static', filename='library_metadata.json') }}");
+
+    // Load metadata and render templates when page loads
+    document.addEventListener('DOMContentLoaded', async () => {
+        await renderer.loadMetadata();
+        renderer.renderTemplateGrid('template-container');
+    });
+</script>
+{% endblock %}

@@ -1,13 +1,6 @@
 {
-  "timestamp": "test_commit_789",
-  "branch": "refs/heads/main",
-  "project_name": "comprehensive-resource-library",
-  "checks": {
-    "Project Exists": true,
-    "Deployment Enabled": true,
-    "Production Branch": true,
-    "Latest Deployment Status": "success",
-    "Environment Variables Set": true,
-    "Health Check": true
-  }
+  "status": "success",
+  "templates_deployed": 3,
+  "stdout": "Deployment successful",
+  "stderr": ""
 }

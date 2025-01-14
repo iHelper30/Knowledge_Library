@@ -1,14 +1,11 @@
-from typing import 
-from typing import Any
-from typing import List, Optional, Union, Callable
+from typing import Any, List, Optional, Union, Dict, Callable
 import os
 import json
 import markdown2
-from typing import Dict, Any
 
 class MetadataEnricher:
 
-    def __init__(self: Any, *args: Any, **kwargs: Any) -> Any:
+    def __init__(self: Any, root_path: str, *args: Any, **kwargs: Any) -> Any:
         self.root_path = root_path
         self.metadata_file = os.path.join(root_path, 'library_metadata.json')
 
@@ -59,12 +56,13 @@ class MetadataEnricher:
             json.dump(library_metadata, f, indent=2)
         return library_metadata
 
-def main(self: Any, *args: Any, **kwargs: Any) -> Any:
-    root_path = 'C:\\Users\\ihelp\\Comprehensive_Resource_Library\\Comprehensive_Resource_Library\\Library_Resources'
+def main(root_path: str, *args: Any, **kwargs: Any) -> Any:
     enricher = MetadataEnricher(root_path)
     library_metadata = enricher.enrich_library_metadata()
     print('Library Metadata Generated Successfully:')
-    print(f'Total Knowledge Blocks: {library_metadata['total_knowledge_blocks']}')
+    print(f'Total Knowledge Blocks: {library_metadata["total_knowledge_blocks"]}')
     print('Categories:', json.dumps(library_metadata['categories'], indent=2))
+
 if __name__ == '__main__':
-    main()
+    root_path = 'C:\\Users\\ihelp\\KnowledgeLibrary\\Templates_NEW'
+    main(root_path)

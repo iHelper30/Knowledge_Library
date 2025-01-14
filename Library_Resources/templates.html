@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iHelper.Tech - Templates</title>
+    <link href="template_styles.css" rel="stylesheet">
+</head>
+<body>
+    <div id="template-container"></div>
+
+    <script type="module">
+        import TemplateRenderer from './template_renderer.js';
+
+        // Initialize the renderer
+        const renderer = new TemplateRenderer('/library_metadata.json');
+
+        // Load metadata and render templates when page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            await renderer.loadMetadata();
+            renderer.renderTemplateGrid('template-container');
+        });
+    </script>
+</body>
+</html>

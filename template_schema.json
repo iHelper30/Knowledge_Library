@@ -1,0 +1,67 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Template Configuration Schema",
+    "description": "Validation schema for template configuration",
+    "type": "object",
+    "required": ["template_type", "supported_formats", "dependencies"],
+    "properties": {
+        "template_type": {
+            "type": "string",
+            "description": "Type of template",
+            "enum": [
+                "document", 
+                "presentation", 
+                "code", 
+                "script", 
+                "configuration"
+            ]
+        },
+        "supported_formats": {
+            "type": "array",
+            "description": "Supported file extensions",
+            "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+$"
+            },
+            "minItems": 1
+        },
+        "dependencies": {
+            "type": "array",
+            "description": "Required dependencies",
+            "items": {
+                "type": "object",
+                "required": ["name", "version"],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "version": {
+                        "type": "string",
+                        "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["python", "npm", "system", "other"]
+                    }
+                }
+            }
+        },
+        "compatibility": {
+            "type": "object",
+            "properties": {
+                "platforms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": ["windows", "linux", "macos", "web"]
+                    }
+                },
+                "min_version": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$"
+                }
+            }
+        }
+    }
+}

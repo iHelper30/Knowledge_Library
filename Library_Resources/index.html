@@ -3,96 +3,511 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Welcome to the Comprehensive Resource Library - Your one-stop destination for digital marketing, business, and technology resources">
-    <meta name="keywords" content="resource library, digital marketing, business resources, technology guides">
+    <title>iHelper: Biz-Builder | Your Complete Business Growth Platform</title>
+    <link rel="stylesheet" href="static/css/dark-theme.css">
     
-    <title>Comprehensive Resource Library</title>
-    <link rel="stylesheet" href="/static/css/dark-theme.css">
-    <script src="/static/js/main.js" defer></script>
+    <!-- Owner & Contact Meta Tags -->
+    <meta name="owner" content="Elijah T. Petrick-Bayless">
+    <meta name="contact:email" content="ihelperemail@gmail.com">
+    <meta name="contact:phone" content="+1 (360) 980-0618">
+    <meta name="location" content="The Great Pacific Northwest, Washington State, 98339">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="iHelper: Business Growth Strategies">
+    <meta property="og:description" content="Proven, stress-tested business resources without the financial strain">
+    <meta property="og:type" content="website">
+    
+    <style>
+        .hero-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-bottom: 3px solid #2BBBAD;
+        }
+        .logo {
+            max-width: 180px;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 10px rgba(43, 187, 173, 0.3));
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #2BBBAD, #33b5e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #e0e0e0;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        .feature-card {
+            background: rgba(43, 187, 173, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(43, 187, 173, 0.1);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(43, 187, 173, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .feature-card h2 {
+            color: #2BBBAD;
+            margin-bottom: 1rem;
+        }
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+        .resource-category {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+        .resource-category h3 {
+            color: #2BBBAD;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .resource-category ul {
+            list-style: none;
+            padding: 0;
+        }
+        .resource-category li {
+            margin-bottom: 0.5rem;
+        }
+        .resource-category a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.2s;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+        .resource-category a:hover {
+            color: #2BBBAD;
+            background: rgba(43, 187, 173, 0.1);
+        }
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(43, 187, 173, 0.1), rgba(51, 181, 229, 0.1));
+            margin-top: 3rem;
+        }
+        .stats-bar {
+            background: linear-gradient(135deg, rgba(43, 187, 173, 0.15), rgba(51, 181, 229, 0.15));
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(43, 187, 173, 0.2);
+        }
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2BBBAD;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+        .value-proposition {
+            background: linear-gradient(135deg, rgba(43, 187, 173, 0.1), rgba(51, 181, 229, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .value-proposition h2 {
+            color: #2BBBAD;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(43, 187, 173, 0.1);
+        }
+        .benefit-card strong {
+            color: #2BBBAD;
+        }
+        .social-proof {
+            font-style: italic;
+            color: #e0e0e0;
+            text-align: center;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+        .timer-bar {
+            background: rgba(43, 187, 173, 0.1);
+            padding: 1rem;
+            text-align: center;
+            border-radius: 5px;
+            margin: 2rem 0;
+        }
+        .timer-bar span {
+            color: #2BBBAD;
+            font-weight: bold;
+        }
+        .contact-info {
+            background: rgba(43, 187, 173, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+            color: #e0e0e0;
+        }
+        .pricing-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .tier-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(43, 187, 173, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .tier-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .tier-badge {
+            background: #2BBBAD;
+            color: #000;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .newsletter-signup {
+            background: linear-gradient(135deg, rgba(43, 187, 173, 0.1), rgba(51, 181, 229, 0.1));
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .newsletter-signup h4 {
+            color: #2BBBAD;
+            margin-bottom: 1rem;
+        }
+        .newsletter-signup p {
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+        }
+        .newsletter-signup .ml-form-embedSubmit {
+            margin-top: 2rem;
+        }
+        .newsletter-signup .primary-button {
+            background: #2BBBAD;
+            color: #000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body class="dark-theme">
-    <header class="nav-menu">
-        <div class="container">
-            <h1 class="text-cyan">Comprehensive Resource Library</h1>
-            <p class="subtitle">Your one-stop destination for digital marketing, business, and technology resources</p>
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">45+</div>
+                <div class="stat-label">Business Resources</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1,000+</div>
+                <div class="stat-label">Success Stories</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Expert Support</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">97%</div>
+                <div class="stat-label">Client Satisfaction</div>
+            </div>
         </div>
-    </header>
+    </div>
 
-    <main class="container">
-        <section class="quick-access card">
-            <h2>Quick Access</h2>
-            <div class="link-grid">
-                <a href="01_Welcome_Message/index.html" class="link-item">Welcome Message</a>
-                <a href="02_Purpose_of_Library/index.html" class="link-item">Purpose of Library</a>
-                <a href="03_Navigation_Guide/index.html" class="link-item">Navigation Guide</a>
-            </div>
-        </section>
+    <div class="hero-section">
+        <img src="static/images/logo.png" alt="iHelper Logo" class="logo">
+        <h1 class="hero-title">iHelper: Biz-Builder</h1>
+        <p class="hero-subtitle">Transform Your Business Vision into Reality with Our Comprehensive Growth Platform</p>
+    </div>
 
-        <section class="popular-resources card">
-            <h2>Popular Resources</h2>
-            <div class="link-grid">
-                <a href="06_Email_Marketing/index.html" class="link-item">Email Marketing</a>
-                <a href="07_Social_Media/index.html" class="link-item">Social Media</a>
-                <a href="17_AI_Tutorials/index.html" class="link-item">AI Tutorials</a>
-            </div>
-        </section>
-
-        <section class="latest-updates card">
-            <h2>Latest Updates</h2>
-            <div class="link-grid">
-                <a href="26_Monthly_Updates/index.html" class="link-item">Monthly Updates</a>
-                <a href="31_Prompt_Toolkit/index.html" class="link-item">Prompt Toolkit</a>
-                <a href="32_Free_Tools/index.html" class="link-item">Free Tools</a>
-            </div>
-        </section>
-
-        <section class="all-sections">
-            <h2>All Sections</h2>
-            <div class="grid-4">
-                <div>
-                    <h3>Learning Path</h3>
-                    <ul>
-                        <li><a href="04_Quick_Start_Guides/index.html">Quick Start Guides</a></li>
-                        <li><a href="05_Basic_Tutorials/index.html">Basic Tutorials</a></li>
-                        <li><a href="13_Online_Courses/index.html">Online Courses</a></li>
-                    </ul>
+    <div class="container">
+        <div class="value-proposition">
+            <h2>Why Business Owners Choose iHelper</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <strong>Save 20+ Hours/Week</strong>
+                    <p>Our automation tools and templates eliminate repetitive tasks</p>
                 </div>
-                <div>
-                    <h3>Marketing Resources</h3>
-                    <ul>
-                        <li><a href="06_Email_Marketing/index.html">Email Marketing</a></li>
-                        <li><a href="07_Social_Media/index.html">Social Media</a></li>
-                        <li><a href="19_Digital_Marketing/index.html">Digital Marketing</a></li>
-                    </ul>
+                <div class="benefit-card">
+                    <strong>Boost Revenue by 300%</strong>
+                    <p>Follow our proven marketing strategies and growth frameworks</p>
                 </div>
-                <div>
-                    <h3>Business Tools</h3>
-                    <ul>
-                        <li><a href="21_Business_Plans/index.html">Business Plans</a></li>
-                        <li><a href="22_Networking_Tips/index.html">Networking Tips</a></li>
-                        <li><a href="33_Offer_Templates/index.html">Offer Templates</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>AI & Technology</h3>
-                    <ul>
-                        <li><a href="17_AI_Tutorials/index.html">AI Tutorials</a></li>
-                        <li><a href="18_AI_Case_Studies/index.html">AI Case Studies</a></li>
-                        <li><a href="31_Prompt_Toolkit/index.html">Prompt Toolkit</a></li>
-                    </ul>
+                <div class="benefit-card">
+                    <strong>Cut Costs by 40%</strong>
+                    <p>Optimize operations with our efficiency guidelines</p>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Comprehensive Resource Library. All rights reserved.</p>
-            <nav class="footer-nav">
-                <a href="sitemap.html">Sitemap</a>
-                <a href="contact.html">Contact</a>
-            </nav>
         </div>
-    </footer>
+
+        <div class="social-proof">
+            "Using iHelper's resources, we scaled from $10K to $100K monthly revenue in just 6 months. Their strategies are practical, actionable, and simply work."
+            <br>- Sarah Chen, CEO of TechGrowth
+        </div>
+
+        <div class="timer-bar">
+            <span>Limited Time:</span> Access all premium resources free for the next 30 days
+        </div>
+
+        <div class="grid-container">
+            <div class="feature-card">
+                <h2>Strategic Growth</h2>
+                <p>Unlock proven frameworks and strategies to scale your business with confidence and precision</p>
+            </div>
+            <div class="feature-card">
+                <h2>Digital Mastery</h2>
+                <p>Master the digital landscape with cutting-edge marketing strategies and automation tools</p>
+            </div>
+            <div class="feature-card">
+                <h2>Resource Arsenal</h2>
+                <p>Access our complete toolkit of templates, guides, and AI-powered solutions</p>
+            </div>
+        </div>
+
+        <div class="resources-grid">
+            <div class="resource-category">
+                <h3>🚀 Quick Start</h3>
+                <ul>
+                    <li><a href="01_Welcome_Message/index.html">Welcome Message</a></li>
+                    <li><a href="02_Purpose_of_Library/index.html">Purpose & Vision</a></li>
+                    <li><a href="03_Navigation_Guide/index.html">Navigation Guide</a></li>
+                    <li><a href="04_Quick_Start_Guides/index.html">Quick Start Guides</a></li>
+                    <li><a href="05_Basic_Tutorials/index.html">Basic Tutorials</a></li>
+                </ul>
+            </div>
+            
+            <div class="resource-category">
+                <h3>📈 Marketing Excellence</h3>
+                <ul>
+                    <li><a href="06_Email_Marketing/index.html">Email Marketing</a></li>
+                    <li><a href="07_Social_Media/index.html">Social Media</a></li>
+                    <li><a href="08_SEO_Checklists/index.html">SEO Checklists</a></li>
+                    <li><a href="19_Digital_Marketing/index.html">Digital Marketing</a></li>
+                    <li><a href="27_Newsletter_Drafts/index.html">Newsletter Drafts</a></li>
+                </ul>
+            </div>
+
+            <div class="resource-category">
+                <h3>💡 Innovation & AI</h3>
+                <ul>
+                    <li><a href="17_AI_Tutorials/index.html">AI Tutorials</a></li>
+                    <li><a href="18_AI_Case_Studies/index.html">AI Case Studies</a></li>
+                    <li><a href="31_Prompt_Toolkit/index.html">Prompt Toolkit</a></li>
+                    <li><a href="09_Workflow_Automation/index.html">Workflow Automation</a></li>
+                </ul>
+            </div>
+
+            <div class="resource-category">
+                <h3>📚 Content Creation</h3>
+                <ul>
+                    <li><a href="10_Blog_Templates/index.html">Blog Templates</a></li>
+                    <li><a href="11_Video_Scripts/index.html">Video Scripts</a></li>
+                    <li><a href="12_Graphic_Design/index.html">Graphic Design</a></li>
+                    <li><a href="14_Ebook_Summaries/index.html">Ebook Summaries</a></li>
+                </ul>
+            </div>
+
+            <div class="resource-category">
+                <h3>📊 Business Strategy</h3>
+                <ul>
+                    <li><a href="21_Business_Plans/index.html">Business Plans</a></li>
+                    <li><a href="22_Networking_Tips/index.html">Networking Tips</a></li>
+                    <li><a href="33_Offer_Templates/index.html">Offer Templates</a></li>
+                    <li><a href="34_Best_Practices/index.html">Best Practices</a></li>
+                </ul>
+            </div>
+
+            <div class="resource-category">
+                <h3>🎯 Professional Growth</h3>
+                <ul>
+                    <li><a href="35_Remote_Work/index.html">Remote Work</a></li>
+                    <li><a href="36_Personal_Development/index.html">Personal Development</a></li>
+                    <li><a href="37_Project_Management/index.html">Project Management</a></li>
+                    <li><a href="38_Time_Management/index.html">Time Management</a></li>
+                    <li><a href="39_Leadership_Skills/index.html">Leadership Skills</a></li>
+                    <li><a href="40_Feedback_Forms/index.html">Feedback Forms</a></li>
+                </ul>
+            </div>
+
+            <div class="resource-category">
+                <h3>📱 Digital Tools</h3>
+                <ul>
+                    <li><a href="32_Free_Tools/index.html">Free Tools</a></li>
+                    <li><a href="13_Online_Courses/index.html">Online Courses</a></li>
+                    <li><a href="15_Guide_Summaries/index.html">Guide Summaries</a></li>
+                    <li><a href="16_Whitepaper_Summaries/index.html">Whitepaper Summaries</a></li>
+                </ul>
+            </div>
+
+            <div class="resource-category">
+                <h3>🎮 Interactive Resources</h3>
+                <ul>
+                    <li><a href="23_Discussion_Forum/index.html">Discussion Forum</a></li>
+                    <li><a href="24_AMA_Guidelines/index.html">AMA Guidelines</a></li>
+                    <li><a href="25_Interview_Frameworks/index.html">Interview Frameworks</a></li>
+                    <li><a href="26_Monthly_Updates/index.html">Monthly Updates</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h3>Connect with iHelper</h3>
+            <p>📧 Email: <a href="mailto:ihelperemail@gmail.com">ihelperemail@gmail.com</a></p>
+            <p>📱 Mobile: +1 (360) 980-0618</p>
+            <p>🏠 Location: The Great Pacific Northwest, Washington State, 98339</p>
+            <p>👤 Owner: Elijah T. Petrick-Bayless</p>
+        </div>
+
+        <section class="newsletter-signup">
+            <div id="mlb2-21345203" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-21345203">
+                <div class="ml-form-align-center">
+                    <div class="ml-form-embedWrapper embedForm">
+                        <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                            <div class="ml-form-embedContent">
+                                <h4>🚀 Claim Your Free Task-Hacker Playbook</h4>
+                                <p>Gain instant access to our tried-and-true resources, strategies, and systems designed to streamline your workflows and provide jam-packed valuable insights from today's leading experts and cutting-edge market research!</p>
+                                <p><strong>Join our community of Go-Getters today and receive your free Freelancer's Ultimate Guide to Task Management instantly!</strong></p>
+                            </div>
+
+                            <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/1260620/forms/142790224526706138/subscribe" method="post" target="_blank">
+                                <div class="ml-form-formContent">
+                                    <div class="ml-form-fieldRow">
+                                        <div class="ml-field-group ml-field-name">
+                                            <label for="name">First Name:</label>
+                                            <input type="text" class="form-control" name="fields[name]" placeholder="Your First Name" autocomplete="given-name">
+                                        </div>
+                                    </div>
+                                    <div class="ml-form-fieldRow ml-last-item">
+                                        <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                                            <label for="email">Email:</label>
+                                            <input type="email" class="form-control" name="fields[email]" placeholder="Your Email Address" autocomplete="email" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ml-form-embedSubmit">
+                                    <button type="submit" class="primary-button">Get My Free Playbook</button>
+                                </div>
+
+                                <div class="ml-form-embedPermissions privacy-policy">
+                                    <p>We respect your privacy. Unsubscribe at any time.</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing-tiers">
+            <div class="tier-card">
+                <div class="tier-badge">Startup Essentials</div>
+                <h4>Foundational Growth</h4>
+                <ul>
+                    <li>Basic Resource Library</li>
+                    <li>Starter Templates</li>
+                    <li>Community Support</li>
+                </ul>
+                <p class="price">Free</p>
+            </div>
+            <div class="tier-card">
+                <div class="tier-badge">Professional Accelerator</div>
+                <h4>Scalable Success</h4>
+                <ul>
+                    <li>Full Resource Access</li>
+                    <li>Advanced Templates</li>
+                    <li>Priority Support</li>
+                    <li>Monthly Strategy Sessions</li>
+                </ul>
+                <p class="price">$49/month</p>
+            </div>
+            <div class="tier-card">
+                <div class="tier-badge">Enterprise Mastermind</div>
+                <h4>Comprehensive Growth</h4>
+                <ul>
+                    <li>Complete Resource Suite</li>
+                    <li>Custom Strategy Development</li>
+                    <li>Dedicated Consultant</li>
+                    <li>Quarterly Business Review</li>
+                </ul>
+                <p class="price">$199/month</p>
+            </div>
+        </section>
+
+        <div class="social-proof">
+            <h3>Real-World Impact</h3>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">1,247+</div>
+                    <div class="stat-label">Businesses Transformed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$42M+</div>
+                    <div class="stat-label">Revenue Generated</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">97%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+            <blockquote>
+                "iHelper cut our operational costs by 35% and doubled our revenue in 6 months. These aren't just resources, they're a business lifeline."
+                <br>- Sarah Chen, TechGrowth Founder
+            </blockquote>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Start with our curated guides and watch your business soar</p>
+            <a href="04_Quick_Start_Guides/index.html" class="btn btn-primary">Get Started Now</a>
+        </div>
+    </div>
 </body>
 </html>

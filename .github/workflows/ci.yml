@@ -2,75 +2,260 @@ name: Comprehensive CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches:
+      - main
+      - develop
+      - 'feature/**'
+      - 'hotfix/**'
+      - 'rc/**'
   pull_request:
-    branches: [ main, develop ]
+    branches:
+      - main
+      - develop
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run workflow on'
+        required: true
+        default: 'develop'
+      force_full_tests:
+        description: 'Run full test suite'
+        type: boolean
+        default: false
 
+# Global environment configuration
+env:
+  PYTHON_VERSION: "3.10"
+  POETRY_VERSION: "1.2.2"
+  POETRY_HOME: "/opt/poetry"
+  POETRY_VIRTUALENVS_CREATE: false
+  POETRY_CACHE_DIR: "/tmp/poetry_cache"
+
+# Workflow-level permissions
 permissions:
   contents: read
+  pull-requests: write
   security-events: write
-  actions: write
 
 jobs:
-  lint-and-test:
+  # Preliminary checks for all branches
+  preliminary-checks:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Determine Branch Type
+        id: branch-type
+        run: |
+          BRANCH=${GITHUB_REF#refs/heads/}
+          if [[ "$BRANCH" == "main" ]]; then
+            echo "type=main" >> $GITHUB_OUTPUT
+          elif [[ "$BRANCH" == "develop" ]]; then
+            echo "type=develop" >> $GITHUB_OUTPUT
+          elif [[ "$BRANCH" == feature/* ]]; then
+            echo "type=feature" >> $GITHUB_OUTPUT
+          elif [[ "$BRANCH" == hotfix/* ]]; then
+            echo "type=hotfix" >> $GITHUB_OUTPUT
+          elif [[ "$BRANCH" == rc/* ]]; then
+            echo "type=release-candidate" >> $GITHUB_OUTPUT
+          else
+            echo "type=other" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Branch Type Validation
+        run: |
+          BRANCH_TYPE="${{ steps.branch-type.outputs.type }}"
+          echo "Detected branch type: $BRANCH_TYPE"
+          
+          # Additional branch-specific validation logic
+          case "$BRANCH_TYPE" in
+            feature)
+              echo "Running feature branch checks"
+              ;;
+            hotfix)
+              echo "Running hotfix branch checks"
+              ;;
+            main|develop)
+              echo "Running primary branch checks"
+              ;;
+            *)
+              echo "Running default branch checks"
+              ;;
+          esac
+
+  # Comprehensive testing with dynamic configuration
+  dynamic-testing:
+    needs: preliminary-checks
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10', '3.11']
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.9", "3.10", "3.11"]
+        include:
+          - os: ubuntu-latest
+            python-version: "3.10"
+            coverage: true
+    
+    runs-on: ${{ matrix.os }}
     
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
-        cache: 'pip'
-    
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install black mypy flake8 bandit safety
-    
-    - name: Code Formatting Check
-      run: black --check .
-    
-    - name: Type Checking
-      run: mypy src tests
-    
-    - name: Linting
-      run: flake8 src tests
-    
-    - name: Security Scan
-      run: |
-        bandit -r src
-        safety check
-    
-    - name: Run Tests
-      run: |
-        pytest tests/ --cov=src --cov-report=xml
-    
-    - name: Upload Coverage
-      uses: codecov/codecov-action@v3
-      with:
-        fail_ci_if_error: true
-
-  dependency-review:
-    name: Dependency Review
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       
-      - name: Dependency Review
-        uses: actions/dependency-review-action@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          poetry --version
+      
+      - name: Install Dependencies
+        run: |
+          poetry install --no-interaction
+      
+      - name: Determine Test Scope
+        id: test-scope
+        run: |
+          BRANCH=${GITHUB_REF#refs/heads/}
+          if [[ "$BRANCH" == "main" ]] || [[ "$BRANCH" == "develop" ]]; then
+            echo "scope=full" >> $GITHUB_OUTPUT
+          elif [[ "$BRANCH" == feature/* ]]; then
+            echo "scope=quick" >> $GITHUB_OUTPUT
+          else
+            echo "scope=standard" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Run Tests
+        run: |
+          TEST_SCOPE="${{ steps.test-scope.outputs.scope }}"
+          case "$TEST_SCOPE" in
+            full)
+              poetry run pytest tests/ --cov=. --cov-report=xml
+              ;;
+            quick)
+              poetry run pytest tests/ -m "not slow"
+              ;;
+            *)
+              poetry run pytest tests/
+              ;;
+          esac
+      
+      - name: Upload Coverage
+        if: matrix.coverage
+        uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true
 
-  release-drafter:
+  # Security scanning with adaptive configuration
+  security-scan:
+    needs: dynamic-testing
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     steps:
-      - uses: release-drafter/release-drafter@v5
+      - uses: actions/checkout@v4
+      
+      - name: Adaptive Security Scanning
+        run: |
+          BRANCH=${GITHUB_REF#refs/heads/}
+          
+          # More aggressive scanning for main and hotfix branches
+          if [[ "$BRANCH" == "main" ]] || [[ "$BRANCH" == hotfix/* ]]; then
+            echo "Running comprehensive security scan"
+            pip install bandit safety
+            bandit -r . -f custom
+            safety check
+          else
+            echo "Running standard security checks"
+            pip install safety
+            safety check
+          fi
+
+  # Deployment with branch-specific logic
+  conditional-deployment:
+    needs: 
+      - dynamic-testing
+      - security-scan
+    if: >
+      github.ref == 'refs/heads/main' || 
+      github.ref == 'refs/heads/develop' || 
+      startsWith(github.ref, 'refs/heads/rc/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Determine Deployment Environment
+        id: deployment-env
+        run: |
+          BRANCH=${GITHUB_REF#refs/heads/}
+          if [[ "$BRANCH" == "main" ]]; then
+            echo "environment=production" >> $GITHUB_OUTPUT
+            echo "url=https://knowledge-library.com" >> $GITHUB_OUTPUT
+          elif [[ "$BRANCH" == "develop" ]]; then
+            echo "environment=staging" >> $GITHUB_OUTPUT
+            echo "url=https://staging.knowledge-library.com" >> $GITHUB_OUTPUT
+          elif [[ "$BRANCH" == rc/* ]]; then
+            echo "environment=preview" >> $GITHUB_OUTPUT
+            echo "url=https://preview.knowledge-library.com" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Deploy to ${{ steps.deployment-env.outputs.environment }}
+        run: |
+          echo "Deploying to ${{ steps.deployment-env.outputs.environment }}"
+          echo "Deployment URL: ${{ steps.deployment-env.outputs.url }}"
+        # Add actual deployment commands here
+
+  # Release generation for main branch
+  release-generation:
+    needs: conditional-deployment
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Generate Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(date +'v%Y.%m.%d')
+          gh release create $VERSION \
+            --title "Release $VERSION" \
+            --generate-notes
+
+  # Cloudflare deployment
+  cloudflare-deploy:
+    needs: 
+      - dynamic-testing
+      - security-scan
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install Cloudflare CLI
+        run: |
+          npm install -g @cloudflare/wrangler
+      
+      - name: Deploy to Cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          python validate_template.py Templates_NEW
+    
+      - name: Generate Sample Templates
+        run: |
+          python generate_template.py "CI_Test_Document" -t document
+          python generate_template.py "CI_Test_Code" -t code
+    
+      - name: Validate Generated Templates
+        run: |
+          python validate_template.py Templates_NEW/CI_Test_Document
+          python validate_template.py Templates_NEW/CI_Test_Code

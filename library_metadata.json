@@ -1,0 +1,153 @@
+{
+  "total_knowledge_blocks": 9,
+  "categories": {
+    "Introduction and Fundamentals": 9
+  },
+  "knowledge_blocks": {
+    "01_Case_Study_Template": {
+      "id": "01_Case_Study_Template",
+      "title": "Case Study Template",
+      "category": "Introduction and Fundamentals",
+      "summary": "# 01 Case Study Template",
+      "tags": [
+        "case",
+        "study",
+        "template"
+      ],
+      "content_files": [
+        "README.md",
+        "template.md"
+      ],
+      "difficulty": "Beginner"
+    },
+    "02_White_Paper_Template": {
+      "id": "02_White_Paper_Template",
+      "title": "White Paper Template",
+      "category": "Introduction and Fundamentals",
+      "summary": "# 02 White Paper Template",
+      "tags": [
+        "white",
+        "paper",
+        "template"
+      ],
+      "content_files": [
+        "README.md",
+        "template.md"
+      ],
+      "difficulty": "Beginner"
+    },
+    "03_Email_Newsletter_Template": {
+      "id": "03_Email_Newsletter_Template",
+      "title": "Email Newsletter Template",
+      "category": "Introduction and Fundamentals",
+      "summary": "# 03 Email Newsletter Template",
+      "tags": [
+        "email",
+        "newsletter",
+        "template"
+      ],
+      "content_files": [
+        "README.md",
+        "template.md"
+      ],
+      "difficulty": "Beginner"
+    },
+    "04_Podcast_Episode_Template": {
+      "id": "04_Podcast_Episode_Template",
+      "title": "Podcast Episode Template",
+      "category": "Introduction and Fundamentals",
+      "summary": "# 04 Podcast Episode Template",
+      "tags": [
+        "podcast",
+        "episode",
+        "template"
+      ],
+      "content_files": [
+        "README.md",
+        "template.md"
+      ],
+      "difficulty": "Beginner"
+    },
+    "05_Press_Release_Template": {
+      "id": "05_Press_Release_Template",
+      "title": "Press Release Template",
+      "category": "Introduction and Fundamentals",
+      "summary": "# 05 Press Release Template",
+      "tags": [
+        "press",
+        "release",
+        "template"
+      ],
+      "content_files": [
+        "README.md",
+        "template.md"
+      ],
+      "difficulty": "Beginner"
+    },
+    "06_Sales_Page_Template": {
+      "id": "06_Sales_Page_Template",
+      "title": "Sales Page Template",
+      "category": "Introduction and Fundamentals",
+      "summary": "# 06 Sales Page Template",
+      "tags": [
+        "sales",
+        "page",
+        "template"
+      ],
+      "content_files": [
+        "README.md",
+        "template.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "07_Social_Media_Carousel_Template": {
+      "id": "07_Social_Media_Carousel_Template",
+      "title": "Social Media Carousel Template",
+      "category": "Introduction and Fundamentals",
+      "summary": "# 07 Social Media Carousel Template",
+      "tags": [
+        "social",
+        "media",
+        "carousel",
+        "template"
+      ],
+      "content_files": [
+        "README.md",
+        "template.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "08_Blog_Post_Template": {
+      "id": "08_Blog_Post_Template",
+      "title": "Blog Post Template",
+      "category": "Introduction and Fundamentals",
+      "summary": "# 08 Blog Post Template",
+      "tags": [
+        "blog",
+        "post",
+        "template"
+      ],
+      "content_files": [
+        "README.md",
+        "template.md"
+      ],
+      "difficulty": "Intermediate"
+    },
+    "09_Webinar_Workshop_Template": {
+      "id": "09_Webinar_Workshop_Template",
+      "title": "Webinar Workshop Template",
+      "category": "Introduction and Fundamentals",
+      "summary": "# 09 Webinar Workshop Template",
+      "tags": [
+        "webinar",
+        "workshop",
+        "template"
+      ],
+      "content_files": [
+        "README.md",
+        "template.md"
+      ],
+      "difficulty": "Intermediate"
+    }
+  }
+}
