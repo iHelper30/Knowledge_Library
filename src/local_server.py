@@ -14,6 +14,7 @@ from werkzeug.exceptions import HTTPException
 # Import custom modules
 from .error_handler import handle_error, validate_request, create_error_response, TemplateGenerationError
 from .cache import TemplateMetadataCache
+from .static.favicon import serve_favicon  # Import favicon handler
 
 # Initialize cache
 template_metadata_cache = TemplateMetadataCache()
@@ -56,6 +57,9 @@ app = Flask(__name__)
 setup_logging(app)
 CORS(app)
 
+# Initialize favicon handling
+serve_favicon(app)  # Initialize favicon handling
+
 # Paths
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), '..', 'Templates_NEW')
 MARKDOWN_DIR = os.path.join(os.path.dirname(__file__), '..', 'Templates_Markdown')
@@ -95,10 +99,37 @@ def handle_global_error(error):
     
     return create_error_response(error_info)
 
-# Favicon handler to prevent unnecessary errors
+# Favicon handling
 @app.route('/favicon.ico')
 def favicon():
-    return '', 204  # No content, prevents 500 errors
+    """
+    Robust favicon handling with multiple fallback strategies
+    """
+    try:
+        # Strategy 1: Serve from static directory
+        static_dir = os.path.join(os.path.dirname(__file__), 'static')
+        favicon_path = os.path.join(static_dir, 'favicon.ico')
+        
+        if os.path.exists(favicon_path):
+            return send_from_directory(static_dir, 'favicon.ico', mimetype='image/x-icon')
+        
+        # Strategy 2: Generate a minimal favicon
+        from PIL import Image, ImageDraw
+        
+        icon = Image.new('RGBA', (16, 16), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(icon)
+        draw.rectangle([0, 0, 15, 15], fill=(33, 150, 243, 255))  # Material Blue
+        
+        # Save to static directory
+        os.makedirs(static_dir, exist_ok=True)
+        icon.save(favicon_path, 'ICO')
+        
+        return send_from_directory(static_dir, 'favicon.ico', mimetype='image/x-icon')
+    
+    except Exception as e:
+        # Log error, return no content
+        app.logger.error(f"Favicon generation error: {e}")
+        return '', 204
 
 def sanitize_filename(filename):
     """Create a safe filename."""
