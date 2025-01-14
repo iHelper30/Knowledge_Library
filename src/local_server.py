@@ -167,16 +167,27 @@ def get_template_metadata(template_name: str):
 def generate_template():
     """Advanced template generation endpoint with comprehensive error handling."""
     try:
+        # Log incoming request details
+        app.logger.info(f"Template generation request received: {request.get_json()}")
+        
         # Validate request
         validate_request(request, ['template_type', 'name'])
         
         data = request.get_json()
-        template_type = data['template_type']
+        template_type = data.get('template_type')
         template_name = sanitize_filename(data.get('name', f'New_{template_type}_Template'))
+        
+        app.logger.info(f"Processing template generation: type={template_type}, name={template_name}")
         
         # Validate template type
         from tools.template_generator.validator import TemplateValidator
         valid_types = ['web_app', 'document', 'script', 'data_analysis']
+        
+        if not template_type:
+            raise TemplateGenerationError(
+                "Template type is required",
+                details={'required_fields': ['template_type']}
+            )
         
         if template_type not in valid_types:
             raise TemplateGenerationError(
@@ -191,6 +202,8 @@ def generate_template():
         
         # Log successful generation
         log_template_generation(template_type, template_name, 'success')
+        
+        app.logger.info(f"Template generated successfully: {generated_path}")
         
         return jsonify({
             'status': 'success',
