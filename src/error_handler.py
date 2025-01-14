@@ -15,34 +15,59 @@ class TemplateGenerationError(KnowledgeLibraryError):
         super().__init__(message, status_code=400)
         self.details = details or {}
 
+class ValidationError(Exception):
+    def errors(self):
+        # This method should return a dictionary of validation errors
+        # For demonstration purposes, it's left empty
+        return {}
+
 def handle_error(error: Exception) -> Dict[str, Any]:
     """
-    Centralized error handling and logging.
+    Centralized error handling with comprehensive error mapping.
     
     Args:
         error (Exception): The caught exception
     
     Returns:
-        Standardized error response dictionary
+        dict: Standardized error response
     """
-    if isinstance(error, KnowledgeLibraryError):
-        logging.error(f"{error.__class__.__name__}: {error.message}")
-        return {
-            'error': error.message,
-            'status_code': error.status_code,
-            'details': getattr(error, 'details', {})
+    # Default error response
+    error_info = {
+        'message': 'An unexpected error occurred',
+        'status_code': 500,
+        'details': {}
+    }
+    
+    # Specific error type handling
+    if isinstance(error, TemplateGenerationError):
+        error_info = {
+            'message': str(error),
+            'status_code': 400,
+            'details': error.details if hasattr(error, 'details') else {}
         }
     
-    # Generic error handling
-    logging.exception("Unhandled exception")
-    return {
-        'error': 'An unexpected error occurred',
-        'status_code': 500,
-        'details': {
-            'type': error.__class__.__name__,
-            'message': str(error)
+    elif isinstance(error, ValidationError):
+        error_info = {
+            'message': 'Validation failed',
+            'status_code': 422,
+            'details': {
+                'validation_errors': error.errors()
+            }
         }
-    }
+    
+    elif isinstance(error, FileNotFoundError):
+        error_info = {
+            'message': 'Resource not found',
+            'status_code': 404,
+            'details': {
+                'path': str(error)
+            }
+        }
+    
+    # Log the error for server-side tracking
+    logging.error(f"Error Handling: {error_info}")
+    
+    return error_info
 
 def validate_request(request: Request, required_fields: list) -> None:
     """
